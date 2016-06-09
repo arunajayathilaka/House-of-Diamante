@@ -1,20 +1,16 @@
-body{
-  		background-image: url("img/bg.jpg");
-    	background-color: #cccccc;
-  	}
 
-  	.l2{
+.l2{
 
-  		 display: inline-block;
-  		 margin-left: -4px;
-  		 line-height: 40px;
-  		 padding-left: 20px;
+    display: inline-block;
+  	margin-left: -4px;
+  	line-height: 40px;
+  	padding-left: 20px;
   	}
-  	.s1{
-  		
-  		width:180px;
-    	margin-left:auto;
-    	margin-right:20px;
+.s1{
+  	
+  	width:180px;
+    margin-left:auto;
+    margin-right:20px;
   		
   	}
 .nav1 ul {
@@ -68,10 +64,11 @@ body{
 	width: auto;
 	height:auto;
 }*/
-img {
+.logo-wrap img {
 	margin-top: 40px;
 	max-width: 100%;
     height: auto;
+    margin-left: 350px;
 }
 .slider{
 	display:relative;

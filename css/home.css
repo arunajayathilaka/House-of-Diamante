@@ -3,9 +3,8 @@
 
     display: inline-block;
   	margin-left: -4px;
-  	line-height: 40px;
-  	padding-left: 20px;
   	
+  	float: right;
   	
   	}
 
@@ -13,10 +12,26 @@
   	
   	width:auto;
     margin-left:auto;
-    margin-right:20px;
-    background-color: red;
+    height: 50px;
+    background-color: #778899;
   		
   	}
+
+.s1 li a{
+	display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    height: 50px;
+}
+.s1 li a:hover{
+	
+	background-color: #111;
+	
+
+}
+
 .nav1 ul {
     list-style-type: none;
     margin: 0;

@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <html>
 <head>
 <title>HOD</title>
@@ -8,14 +11,31 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
  <link rel="stylesheet" href="css/home.css">
+ <link rel="stylesheet" type="text/css" href="css/login.css">
 </head>
-<body style="background-color:#FFFFFF">
+<body style="background-image:url(" bg.jpg ")">
 	
 		<div class="s1">
+			<?php 
+			
+			
+			if(isset($_SESSION['er']) && $_SESSION['er']=="true"){$_SESSION['er1']="true";}
+			else{$_SESSION['er1']="false";}?>
+			<?php include 'menu.php' ?>
+		<!--
 		<li class="l2"><a href="#">Sign Up </a></li>
-		<li class="l2"><a href="#">Login</a></li>
+		<li class="l2"><a href="javascript:void(0);" onclick="myFunction1()">Login</a></li>
+	-->
 	    </div>
-	
+	    
+		<div class="login-block">
+			<h1>Login</h1>
+			<form method="post" action="checklogin.php">
+				<input type="text" name="u" placeholder="Username" required="required"/>
+				<input type="password" name="p" placeholder="Password" required="required"/>
+				<button type="submit" class=""> Let me in</button>
+			</form>
+		</div>	
 	<div class="nav1">
 		<ul>
 		 

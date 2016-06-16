@@ -1,4 +1,6 @@
-
+.body {
+    background-image: url("bg.jpg");
+}
 .l2{
 
     display: inline-block;
@@ -7,6 +9,20 @@
   	float: right;
   	
   	}
+.l2 a profile-image{
+	margin-left: 10px;
+	
+	
+}
+
+.l2 a img{
+	
+	margin-right: 6px;
+	margin-top:-7px;
+	border-radius: 15px 15px 15px 15px;
+	width:30px;
+	height:30px;
+}
 
 .s1{
   	
@@ -92,7 +108,7 @@
 }
 .slider{
 	display:relative;
-	margin-left: 350px;
+	margin-left: 310px;
 	margin-top: -565px;
 	
 	width: 900px;

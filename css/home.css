@@ -1,22 +1,53 @@
-
+.body {
+    background-image: url("bg.jpg");
+}
 .l2{
 
     display: inline-block;
   	margin-left: -4px;
-  	line-height: 40px;
-  	padding-left: 20px;
   	
+  	float: right;
   	
   	}
+.l2 a profile-image{
+	margin-left: 10px;
+	
+	
+}
+
+.l2 a img{
+	
+	margin-right: 6px;
+	margin-top:-7px;
+	border-radius: 15px 15px 15px 15px;
+	width:30px;
+	height:30px;
+}
 
 .s1{
   	
   	width:auto;
     margin-left:auto;
-    margin-right:20px;
-    background-color: red;
+    height: 50px;
+    background-color: #778899;
   		
   	}
+
+.s1 li a{
+	display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    height: 50px;
+}
+.s1 li a:hover{
+	
+	background-color: #111;
+	
+
+}
+
 .nav1 ul {
     list-style-type: none;
     margin: 0;
@@ -77,7 +108,7 @@
 }
 .slider{
 	display:relative;
-	margin-left: 350px;
+	margin-left: 310px;
 	margin-top: -565px;
 	
 	width: 900px;

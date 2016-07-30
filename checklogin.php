@@ -19,8 +19,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	
 }
 
-//$email="mythree@gmail.com";
-//$password="mythree1";
+
+//make a query for selecting email that user entered
 $result = mysql_query("SELECT * FROM customerlogin WHERE email LIKE '%{$email}%'");
 
 while ($row = mysql_fetch_array($result))
@@ -34,8 +34,6 @@ while ($row = mysql_fetch_array($result))
         	
 			header("Location: login.php");
         }
-		 //include 'index.php';
-
 }
     mysql_close();
 ?>

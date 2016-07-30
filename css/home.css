@@ -1,11 +1,12 @@
-.body {
-    background-image: url("bg.jpg");
+body {
+    background-image:img/bg5.jpg;
+	background-repeat: repeat-x;
 }
 .l2{
 
     display: inline-block;
   	margin-left: -4px;
-  	
+  	text-align:center;
   	float: right;
   	
   	}
@@ -104,7 +105,7 @@
 	margin-top: 40px;
 	max-width: 100%;
     height: auto;
-    margin-left: 350px;
+    margin-left: auto;
 }
 .slider{
 	display:relative;
@@ -171,6 +172,11 @@
 	    text-decoration: none;
 	}
 	
+	
+}
+.container1{
+	width:95%;
+	margin-left:30px;
 	
 }
 @media screen and (max-width: 40em) {

@@ -3,7 +3,7 @@
 	
 	if($_SESSION['er1']=="false"){
 		echo
-			'<li class="l2"><a href="#">Sign Up </a></li>
+			'<li class="l2"><a href="javascript:void(0);" onclick="myFunction2()">Sign Up </a></li>
 			<li class="l2"><a href="javascript:void(0);" onclick="myFunction1()">Login</a></li>';
 	}
 	else{

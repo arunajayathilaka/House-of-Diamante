@@ -34,6 +34,7 @@ session_start();
 		<?php include 'loginForm.php'?>
 		</div>
 	<div class="container2">
+	
 			<div class="row " id="MainMenu">
 				<div class="list-group panel visible-xs">
 					

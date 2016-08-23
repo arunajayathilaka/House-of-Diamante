@@ -1,12 +1,34 @@
 <?php
 
 require_once 'init.php';
+$user=$_SESSION['username'];
+$articlesQuery1=mysql_query("SELECT articles.id,articles.title,COUNT(articles_likes.id) AS likes,COUNT(articles_love.id) AS loves,COUNT(articles_haha.id) AS hahas FROM articles
+LEFT JOIN articles_likes ON articles.id = articles_likes.article LEFT JOIN articles_love ON articles.id = articles_love.article
+LEFT JOIN articles_haha ON articles.id = articles_haha.article GROUP BY articles.id");
 
-$articlesQuery=mysql_query("SELECT articles.id,articles.title,COUNT(articles_likes.id) AS likes FROM articles
-LEFT JOIN articles_likes ON articles.id = articles_likes.article GROUP BY articles.id");
+$articlesQuery2=mysql_query("SELECT articles.id,articles.title,COUNT(articles_love.id) AS loves FROM articles
+LEFT JOIN articles_love ON articles.id = articles_love.article GROUP BY articles.id");
 
-while($row=mysql_fetch_array($articlesQuery)){
-	$articles1[]=$row;
+$articlesQuery3=mysql_query("SELECT articles.id,articles.title,COUNT(articles_haha.id) AS hahas FROM articles
+LEFT JOIN articles_haha ON articles.id = articles_haha.article GROUP BY articles.id");
+
+$likesq=mysql_query("SELECT articles_likes.article FROM articles_likes WHERE articles_likes.user='{$user}'");
+$loveq=mysql_query("SELECT articles_love.article FROM articles_love WHERE articles_love.user='{$user}'");
+$hahaq=mysql_query("SELECT articles_haha.article FROM articles_haha WHERE articles_haha.user='{$user}'");
+
+while($row1=mysql_fetch_array($articlesQuery1)){
+	$articles1[]=$row1;
+}
+
+while($row2=mysql_fetch_array($likesq)){
+	$likesarr[]=$row2['article'];
+}
+
+while($row3=mysql_fetch_array($loveq)){
+	$lovearr[]=$row3['article'];
+}
+while($row4=mysql_fetch_array($hahaq)){
+	$hahaarr[]=$row4['article'];
 }
 //echo '<pre>',print_r($articles1,true),'<pre>';
 ?>
@@ -21,7 +43,7 @@ while($row=mysql_fetch_array($articlesQuery)){
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Thumbnail Gallery - Start Bootstrap Template</title>
+    <title>Photohub</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -42,7 +64,7 @@ while($row=mysql_fetch_array($articlesQuery)){
 
     <!-- Navigation -->
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <div class="container">
+        <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -92,9 +114,31 @@ while($row=mysql_fetch_array($articlesQuery)){
                 <div class="caption">
                     <h3><?php echo $article1['title']; ?></h3>
                    
-                    <p><a href="like.php?type=article&id=<?php echo $article1['id']; ?>" class="btn btn-primary btn-sm" role="button"><img class="img1" src="./img/like.png" alt="" style="width:25% height:5%"></a> 
-					<a href="love.php?type=article&id=<?php echo $article1['id']; ?>" class="btn btn-primary btn-sm" role="button"><img class="img1" src="./img/heart.png" alt="" style="width:25% height:5%"></a>
-					<a href="haha.php?type=article&id=<?php echo $article1['id']; ?>" class="btn btn-primary btn-sm" role="button"><img class="img1" src="./img/smile.png" alt="" style="width:25% height:5%"></a>
+                    <p>
+					<?php if(in_array($article1['id'],$likesarr)):?>
+					<a value="like" id="<?php echo $article1['id']; ?>" class="btn btn-default btn-sm active" role="button"><img class="img1" src="./img/like.png" alt="" style="width:25% height:5%"></a> 
+					<span class="badge"><?php echo $article1['likes']; ?> </span>
+					<?php else: ?>
+					<a value="like" id="<?php echo $article1['id']; ?>" class="btn btn-default btn-sm" role="button"><img class="img1" src="./img/like.png" alt="" style="width:25% height:5%"></a> 
+					<span class="badge"><?php echo $article1['likes']; ?> </span>
+					<?php endif; ?>
+					
+					
+					<?php if(in_array($article1['id'],$lovearr)):?>
+					<a value="love" id="<?php echo $article1['id']; ?>" class="btn btn-default btn-sm active" role="button"><img class="img1" src="./img/heart.png" alt="" style="width:25% height:5%"></a>
+					<span class="badge"><?php echo $article1['loves']; ?></span>
+					<?php else: ?>
+					<a value="love" id="<?php echo $article1['id']; ?>" class="btn btn-default btn-sm" role="button"><img class="img1" src="./img/heart.png" alt="" style="width:25% height:5%"></a>
+					<span class="badge"><?php echo $article1['loves']; ?></span>
+					<?php endif; ?>
+					
+					<?php if(in_array($article1['id'],$hahaarr)):?>
+					<a value="haha" id="<?php echo $article1['id']; ?>" class="btn btn-default btn-sm active" role="button"><img class="img1" src="./img/smile.png" alt="" style="width:25% height:5%"></a>
+					<span class="badge"><?php echo $article1['hahas']; ?></span>
+					<?php else: ?>
+					<a value="haha" id="<?php echo $article1['id']; ?>" class="btn btn-default btn-sm" role="button"><img class="img1" src="./img/smile.png" alt="" style="width:25% height:5%"></a>
+					<span class="badge"><?php echo $article1['hahas']; ?></span>
+					<?php endif; ?>
 					</p>
 					<p><?php echo $article1['likes']; ?> people liked</p>
 				</div>
@@ -123,7 +167,7 @@ while($row=mysql_fetch_array($articlesQuery)){
 
     <!-- jQuery -->
     <script src="js/jquery.js"></script>
-
+	<script src="js/photohub.js"></script>
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
 

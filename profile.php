@@ -1,6 +1,6 @@
 <?php
  require_once 'core.inc.php';
- $_SESSION['receiver1']="ranil";
+ //$_SESSION['receiver1']="ranil";
 ?>
 
 <html>
@@ -78,7 +78,7 @@
 			<div class="col-sm-3 sidenav">
 				
 				<div class="row" style="background-color:grey">
-					<img align="center" class="fb-image-profile thumbnail" src="#" alt="Profile image example"/>
+					<img align="center" class="fb-image-profile thumbnail" src="img/users/user.png" alt="Profile image example"/>
 					<br>
 				</div>
 				
@@ -154,17 +154,18 @@
 														
 															<div class="media-body">
 
-																<div class="media">
-																	<a class="pull-left" href="selectvendor.php?id=112">
-																		<img class="media-object img-circle" style="max-height:40px;" src="assets/img/user.png" />
+																<div class="media" >
+																<div class="vendor">
+																	<a class="pull-left" value="ranil" >
+																		<img class="media-object img-circle" style="max-height:40px;" src="img/users/user0.png" />
 																	</a>
 																	<div class="media-body" >
-																		<h5>Alex Deo | User </h5>
+																		<h5>ranil | User </h5>
 																		
 																	   <small class="text-muted">Active From 3 hours</small>
 																	</div>
 																</div>
-
+																</div>
 															</div>
 														
 														</li>
@@ -215,8 +216,8 @@
 
     <!-- jQuery -->
     <script src="js/jquery.js"></script>
-	<script src="js/auto_chat.js"></script>
-	<script src="js/send.js"></script>
+	<script src="js/chat.js"></script>
+	
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
 	

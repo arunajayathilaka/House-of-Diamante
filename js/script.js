@@ -4,13 +4,17 @@ var webrtc = (function() {
     var getVideo = true,
         getAudio = true,
 
-        video = document.getElementById('webcam'),
-        feed = document.getElementById('feed'),
-        feedContext = feed.getContext('2d'),
+        video = document.createElement('video'),
+
+        
         display = document.getElementById('display'),
         displayContext = display.getContext('2d'),
-		glasses = new Image();
-		glasses.src = "glass.png";
+		photo1 = document.getElementById('photo'),
+        context = photo1.getContext('2d');
+		//glasses = new Image();
+		//glasses.src = "glass2.png";
+		display.style.visibility='visible';
+        photo.style.visibility='hidden';
 		
     navigator.getUserMedia ||
         (navigator.getUserMedia = navigator.mozGetUserMedia ||
@@ -40,11 +44,11 @@ var webrtc = (function() {
                 videoSource = stream;
             }
 
-            video.autoplay = true;
-            video.src = videoSource;
+           video.autoplay = true;
+           video.src = videoSource;
 
-            display.width = feed.width = 220;
-            display.height = feed.height =260;
+            //display.width = 220;
+            //display.height=260;
             displayContext.translate(display.width,0);
 		    displayContext.scale(-1,1);
             streamFeed();
@@ -60,17 +64,45 @@ var webrtc = (function() {
     function onError() {
         alert('There has been a problem retreiving the streams - are you running on file:/// or did you disallow access?');
     }
+	function back(){
+		location.reload();
+		//context.clearRect(0, 0, photo.width, photo.height);
+		display.style.visibility='visible';
+        photo.style.visibility='hidden';
+		
+		
+	}
+	function convertCanvasToImage(canvas) {
+  //var image = new Image();
+  
+	var image = canvas.toDataURL("image/png");
+	//image.onload=function(){
+		
+	return image;
+	//}
+  
+}
 
     function takePhoto() {
-        var photo = document.getElementById('photo'),
-            context = photo.getContext('2d');
+        
+        display.style.visibility='hidden';
+        photo.style.visibility='visible';
 
-        photo.width = display.width;
-        photo.height = display.height;
+       // photo.width = display.width;
+       // photo.height = display.height;
 
-        context.drawImage(display, 0, 0, photo.width, photo.height);
-    }
-
+        context.drawImage(display, 0, 0, photo1.width, photo1.height);
+		//var img=context.getImageData(0, 0, photo.width, photo.height);
+		var img=convertCanvasToImage(photo);
+		
+		var canvas=new fabric.Canvas('photo');
+		//canvas.clear();
+		alert("done");
+        canvas.add(new fabric.Circle({ radius: 30, fill: '#f55'}));
+		canvas.setBackgroundImage(img, canvas.renderAll.bind(canvas));
+		
+		
+	}
     function requestStreams() {
         if (navigator.getUserMedia) {
             navigator.getUserMedia({
@@ -89,12 +121,14 @@ var webrtc = (function() {
 		//displayContext.scale(-1,1);
         displayContext.drawImage(video, 0, 0, display.width, display.height);
 		//displayContext.scale(-1,1);
-		displayContext.drawImage(glasses,100,150,70,70);
+		//displayContext.drawImage(glasses,100,150,70,70);
     }
 
     function initEvents() {
         var photoButton = document.getElementById('takePhoto');
         photoButton.addEventListener('click', takePhoto, false);
+		var photoButton2 = document.getElementById('takePhoto2');
+        photoButton2.addEventListener('click', back, false);
     }
 
     (function init() {

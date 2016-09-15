@@ -1,4 +1,4 @@
-var id;
+var userid;
 //updat chat
 $(document).ready(function(){
 	
@@ -6,7 +6,7 @@ $(document).ready(function(){
 		$.ajax({
 			url:'message.php',
 			method:'POST',
-			data:{receiverid: id},
+			data:{receiverid: userid},
 			success:function(data){
 				
 				$('#messages').html(data);
@@ -18,12 +18,12 @@ $(document).ready(function(){
 //select vendor
 $('#vendor').ready(function(){
 	$('.vendor a').on('click',function(){
-		id=$(this).attr('value');
+		userid=$(this).attr('value');
 		//alert(id);
 		$.ajax({
 			url:'message.php',
 			method:'POST',
-			data:{receiverid: id},
+			data:{receiverid: userid},
 			success:function(data){
 				$('#messages').html(data);
 			}
@@ -37,13 +37,15 @@ $('#vendor').ready(function(){
 
 $('#form_input').submit(function(){
 	var message=$('#message').val();
+	document.getElementById("form_input").reset();
+	//form.value='';
 	//alert(message);
 	$.ajax({
 		url:'send.php',
 		
-		data:{receiverid: id, message: message},
+		data:{receiverid: userid, message: message},
 		success:function(data){
-			alert(data);
+			//alert(data);
 		}
 	});
 	

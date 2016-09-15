@@ -1,6 +1,6 @@
 <?php
 	function updaterate($shopvendor){
-	$query = mysql_query("SELECT * FROM rating WHERE shopvendor='{$shopvendor}'"); 
+	$query = mysql_query("SELECT * FROM rating WHERE vendor_username='{$shopvendor}'AND rating.vendor_username='{$shopvendor}'"); 
 		while($data = mysql_fetch_assoc($query)){
 			$rate_db[] = $data;
 			$sum_rates[] = $data['rate'];

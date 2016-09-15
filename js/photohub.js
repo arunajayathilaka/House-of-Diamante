@@ -1,16 +1,18 @@
 $(document).ready(function(){
-	$('.caption p a').on('click',function(){
+	/*function articlefun(){
+	$('#article p a').on('click',function(){
 		var value=$(this).attr('value');
 		var ide=$(this).attr('id');
 		
 		 $(this).addClass('active');
-		//alert(value);
+		alert(value);
 		$.ajax({
 			url:'likepanel.php',
 			
 			data:{type: value,id: ide},
 			success:function(data){
-				//$('#messages').html(data);
+				//location.reload();
+				$(this .badge).html(data);
 				//alert("done");
 			}
 		});
@@ -18,9 +20,9 @@ $(document).ready(function(){
 		
 		return false;
 		});
-		
+	}*/
 	// update like panel(need to build)	
-	var interval=setInterval(function(){
+	/*var interval=setInterval(function(){
 		$.ajax({
 			url:'updatelikepanel.php',
 			method:'POST',
@@ -30,6 +32,6 @@ $(document).ready(function(){
 				$('.caption p a .badge').html(data);
 			}
 		});
-	}, 2000);
+	}, 2000);*/
 	
 });

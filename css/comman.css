@@ -1,0 +1,212 @@
+body {
+	background-repeat: repeat;
+	max-width: 100%;
+    
+}
+#header{
+	background-image: url('../img/dia.png');
+	background-position: center;
+	background-repeat: no-repeat;
+	  
+}
+.container1{
+	margin-right: 5px;
+	margin-left: 5px;
+	padding-left: 5px;
+	padding-right: 5px;
+}
+#log{
+	text-decoration: none !important; 
+	cursor:pointer;
+	padding-top: 20px;
+	padding-right: 25px;
+}
+#sign{
+	text-decoration: none !important; 
+	cursor:pointer;
+	padding-top: 20px;
+	padding-right: 15px;
+}
+.logo-wrap img {
+	margin-top: 5px;
+	max-width: 35%;  	
+}
+
+.navbar{
+	margin-top: 10px;
+	background-color: #e6eeff;
+	border: none;
+	opacity: 0.5;
+	text-align: center;
+	bottom: 0;
+
+}
+.navbar-default .navbar-nav > li > a{
+	font-family: Berlin Sans FB;
+	font-size: 23;
+    color: #00091a;           
+}
+.navbar-default .navbar-nav > li>a:hover{
+	background-color: #99ccff;
+}
+.navbar-default .navbar-nav > li{
+	padding-left: 5px;
+	padding-right: 5px;
+}
+.navbar .navbar-nav {
+  display: inline-block;
+  float: none;
+  
+}
+
+.navbar .navbar-collapse {
+  text-align: center;
+}
+.social:hover {
+     -webkit-transform: scale(1.1);
+     -moz-transform: scale(1.1);
+     -o-transform: scale(1.1);
+ }
+ .social {
+     -webkit-transform: scale(0.8);
+     /* Browser Variations: */
+     
+     -moz-transform: scale(0.8);
+     -o-transform: scale(0.8);
+     -webkit-transition-duration: 0.5s;
+     -moz-transition-duration: 0.5s;
+     -o-transition-duration: 0.5s;
+ }
+
+/*
+    Multicoloured Hover Variations
+*/
+ 
+ #social-fb:hover {
+     color: #3B5998;
+ }
+ #social-tw:hover {
+     color: #4099FF;
+ }
+ #social-gp:hover {
+     color: #d34836;
+ }
+ #social-em:hover {
+     color: #f39c12;
+ }
+.navbar-custom {
+    color: black;
+    background-color:#505050 ;
+
+}
+.container2{
+	
+}
+        /*bootstrap css change*/
+
+/*changing tab properties*/
+.nav-tabs{
+ 
+}
+.tab-content{
+  background-color: ;
+  color: blue;
+}
+.nav-tabs > li>a{
+  background-color: #055C72;
+  color:#E6F0C2;
+  opacity: 1;
+  border: 1px solid #A6C9C9;
+}
+.nav-tabs > li >a:hover{
+  background-color: #99C2C2;
+  color:#F2F7F7;
+}
+.nav-tabs > li >a:focus{
+  background-color:   #CCE0E0;
+}
+
+/*  end tab property changing*/
+
+
+/*changing panel properties*/
+.panel-default > .panel-heading {
+   background-color:  #599C9C;
+}
+.panel-default .panel-body{
+  background-color: red;
+}
+.panel-default > .panel-footer{
+  background-color: #00ff00;
+}
+
+.panel-primary > .panel-heading{
+  background-color: green;
+}
+.panel-primary .panel-body{
+  background-color: #CCE0E0;
+}
+.panel-primary > .panel-footer{
+  background-color:  #c2d6d6;
+}
+/*  end panel property changing*/
+
+/*changing model properties*/
+.modal-header{
+  background-color: #00ccff;
+}
+.modal-body{
+  background-color:  #990000;
+}
+.modal-footer{
+  background-color: #ffcccc;
+}
+
+/*  end tab property changing*/
+
+/*changing form properties*/
+  /* use colorinput class to change the properties of all types  of inputs*/
+.colorinput{
+  background-color:#CCE0E0;
+}
+
+/*  end form property changing*/
+
+/*changing thumbnail properties*/
+.thumbnail{
+   background-color:transparent;  
+   background: transparent;
+}
+/*  end thubnail property changing*/
+
+/*changing btn properties*/
+
+.btn-primary{
+  background-color:  #006600;
+}
+.btn-default{
+  background-color:  #33ffff;
+}
+.btn-primary:hover{
+  background-color: red;
+}
+.btn-default:hover{
+  background-color: blue;
+}
+.btn-default:active{
+  background-color: green;
+}
+.btn-primary:hover{
+  background-color: green;
+}
+.btn-primary:focus{
+  background-color:  #ffff00;
+}
+.btn-default:focus{
+  background-color:  #ff531a;
+}
+
+/*  end btn property changing*/
+
+        /* */	
+	

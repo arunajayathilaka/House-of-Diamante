@@ -1,36 +1,60 @@
 <?php
 
 require_once 'init.php';
+
 $user=$_SESSION['username'];
-$articlesQuery1=mysql_query("SELECT articles.id,articles.title,COUNT(articles_likes.id) AS likes,COUNT(articles_love.id) AS loves,COUNT(articles_haha.id) AS hahas FROM articles
-LEFT JOIN articles_likes ON articles.id = articles_likes.article LEFT JOIN articles_love ON articles.id = articles_love.article
-LEFT JOIN articles_haha ON articles.id = articles_haha.article GROUP BY articles.id");
+$articlesQuery1=mysql_query("SELECT articles.id,articles.title_name,articles.image_url,articles.username FROM articles");
 
-$articlesQuery2=mysql_query("SELECT articles.id,articles.title,COUNT(articles_love.id) AS loves FROM articles
-LEFT JOIN articles_love ON articles.id = articles_love.article GROUP BY articles.id");
+/*$articlesQuery2=mysql_query("SELECT articles.id,articles.title_name,COUNT(articles_love.id) AS loves FROM articles
+LEFT JOIN articles_love ON articles.id = articles_love.article_id GROUP BY articles.id");
 
-$articlesQuery3=mysql_query("SELECT articles.id,articles.title,COUNT(articles_haha.id) AS hahas FROM articles
-LEFT JOIN articles_haha ON articles.id = articles_haha.article GROUP BY articles.id");
-
-$likesq=mysql_query("SELECT articles_likes.article FROM articles_likes WHERE articles_likes.user='{$user}'");
-$loveq=mysql_query("SELECT articles_love.article FROM articles_love WHERE articles_love.user='{$user}'");
-$hahaq=mysql_query("SELECT articles_haha.article FROM articles_haha WHERE articles_haha.user='{$user}'");
+$articlesQuery3=mysql_query("SELECT articles.id,articles.title_name,COUNT(articles_haha.id) AS hahas FROM articles
+LEFT JOIN articles_haha ON articles.id = articles_haha.article_id GROUP BY articles.id");
+*/
+$likesq=mysql_query("SELECT articles_likes.article_id FROM articles_likes WHERE articles_likes.user='{$user}'");
+$loveq=mysql_query("SELECT articles_love.article_id FROM articles_love WHERE articles_love.user='{$user}'");
+$hahaq=mysql_query("SELECT articles_haha.article_id FROM articles_haha WHERE articles_haha.user='{$user}'");
 
 while($row1=mysql_fetch_array($articlesQuery1)){
 	$articles1[]=$row1;
 }
 
-while($row2=mysql_fetch_array($likesq)){
-	$likesarr[]=$row2['article'];
-}
+$row2=mysql_num_rows($likesq);
+	
+if($row2==0){
+		$likesarr=array("null");
+		echo 'kosala';
+	}
+	else{
+	while($row2=mysql_fetch_array($likesq)){
+	$likesarr[]=$row2['article_id'];
+	}
+	}
 
-while($row3=mysql_fetch_array($loveq)){
-	$lovearr[]=$row3['article'];
-}
-while($row4=mysql_fetch_array($hahaq)){
-	$hahaarr[]=$row4['article'];
-}
+$row3=mysql_num_rows($loveq);
+	if($row3==0){
+		$lovearr=array("null");
+		echo 'dfg';
+	}
+	else{
+	while($row3=mysql_fetch_array($loveq)){
+	$lovearr[]=$row3['article_id'];
+		}
+	}
+
+$row4=mysql_num_rows($hahaq);
+	if($row4==0){
+		$hahaarr=array("null");
+		echo 'sdd';
+	}
+	else{
+		while($row4=mysql_fetch_array($hahaq)){
+	$hahaarr[]=$row4['article_id'];
+	}
+	}
+
 //echo '<pre>',print_r($articles1,true),'<pre>';
+
 ?>
 
 <html>
@@ -46,11 +70,13 @@ while($row4=mysql_fetch_array($hahaq)){
     <title>Photohub</title>
 
     <!-- Bootstrap Core CSS -->
+	
     <link href="css/bootstrap.min.css" rel="stylesheet">
-
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom CSS -->
     <link href="css/thumbnail-gallery.css" rel="stylesheet">
-
+	<link href="css/home.css" rel="stylesheet">
+	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -60,42 +86,14 @@ while($row4=mysql_fetch_array($hahaq)){
 
 </head>
 
-<body style=" background-image: img/bg5.jpg" >
+<body style="background-image: url(img/bg5.jpg); background-size: 100% 100%;" >
 
-    <!-- Navigation -->
-    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <div class="container-fluid">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-             
-            </div>
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">
-                    <li>
-                        <a href="#">Showcase</a>
-                    </li>
-                    <li>
-                        <a href="#">Design</a>
-                    </li>
-                    <li>
-                        <a href="#">Vmirror</a>
-                    </li>
-					 <li>
-                        <a href="#">Photohub</a>
-                    </li>
-                </ul>
-            </div>
-            <!-- /.navbar-collapse -->
-        </div>
-        <!-- /.container -->
-    </nav>
+		<?php 
+		if(isset($_SESSION['er']) && $_SESSION['er']=="true"){$_SESSION['er1']="true";}
+		else{$_SESSION['er1']="false";}?>
+		<?php include 'menu.php' ?>
+		
+	    <?php include 'headnav.php';?> 
 
     <!-- Page Content -->
     <div class="container">
@@ -103,73 +101,183 @@ while($row4=mysql_fetch_array($hahaq)){
         <div class="row">
 			
             <div class="col-lg-12">
-                <h1 class="page-header">Diamante Photohub</h1>
+                <h1 class="text-center" style="color:white;">Diamante Photohub</h1>
+				
             </div>
+			
+			<form class="navbar-form" role="search">
+								<div class="input-group">
+								  <input class="form-control" id="search" style="color:"placeholder="Search">
+								  <div class="input-group-btn">
+									<button href=""id="go"class="btn btn-info" type="button">GO!</button>
+									
+								  </div>
+								
+								</div>
+								 <button class="btn btn-info pull-right" style="margin-right:10px; margin-top:5px;">Recent</button>
+								 <button class="btn btn-info pull-right" style="margin-right:10px; margin-top:5px;">Most</button>
+			</form>
+			<br>
+			<hr>
+			<div id="article">
+			
 			<?php foreach($articles1 as $article1):?>
             <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-                <div class="thumbnail">
+                <div class="thumbnail"style="background-color: rgba(230,238,255,0.5); border: 3px solid #218dfb;">
                 
-                    <img class="img-responsive" src="http://placehold.it/400x300" alt="">
+                    <img class="img-responsive" src="<?php echo $article1['image_url']; ?>" style="height:30%;" alt="">
                 
                 <div class="caption">
-                    <h3><?php echo $article1['title']; ?></h3>
-                   
+                    <h3><?php echo $article1['title_name']; ?></h3>
+					<h5>by <?php echo $article1['username']; ?></h5>
                     <p>
+					
 					<?php if(in_array($article1['id'],$likesarr)):?>
 					<a value="like" id="<?php echo $article1['id']; ?>" class="btn btn-default btn-sm active" role="button"><img class="img1" src="./img/like.png" alt="" style="width:25% height:5%"></a> 
-					<span class="badge"><?php echo $article1['likes']; ?> </span>
+					
 					<?php else: ?>
 					<a value="like" id="<?php echo $article1['id']; ?>" class="btn btn-default btn-sm" role="button"><img class="img1" src="./img/like.png" alt="" style="width:25% height:5%"></a> 
-					<span class="badge"><?php echo $article1['likes']; ?> </span>
-					<?php endif; ?>
 					
+					<?php endif; ?>
+					<?php $sid="like";
+						  $sid.=$article1['id'];
+						  //$sid="like2"
+						 $articlesQuery1=mysql_query("SELECT articles.id,articles.title_name,articles.image_url,articles.username,COUNT(articles_likes.id) AS likes FROM articles
+							LEFT JOIN articles_likes ON articles.id = articles_likes.article_id WHERE articles.id='{$article1['id']}' GROUP BY articles.id");
+							$roww1=mysql_fetch_array($articlesQuery1);
+					?>
+					<span id="<?php echo $sid; ?>" class="badge"><?php echo $roww1['likes']; ?> </span>
 					
 					<?php if(in_array($article1['id'],$lovearr)):?>
 					<a value="love" id="<?php echo $article1['id']; ?>" class="btn btn-default btn-sm active" role="button"><img class="img1" src="./img/heart.png" alt="" style="width:25% height:5%"></a>
-					<span class="badge"><?php echo $article1['loves']; ?></span>
+					
 					<?php else: ?>
 					<a value="love" id="<?php echo $article1['id']; ?>" class="btn btn-default btn-sm" role="button"><img class="img1" src="./img/heart.png" alt="" style="width:25% height:5%"></a>
-					<span class="badge"><?php echo $article1['loves']; ?></span>
+					
 					<?php endif; ?>
+					
+					<?php $sid="love";
+						  $sid.=$article1['id'];
+						  //$sid="like2"
+						 $articlesQuery2=mysql_query("SELECT articles.id,articles.title_name,COUNT(articles_love.id) AS loves FROM articles
+						LEFT JOIN articles_love ON articles.id = articles_love.article_id WHERE articles.id='{$article1['id']}' GROUP BY articles.id");
+						$roww2=mysql_fetch_array($articlesQuery2);
+					?>
+					
+					<span id="<?php echo $sid; ?>" class="badge"><?php echo $roww2['loves']; ?></span>
 					
 					<?php if(in_array($article1['id'],$hahaarr)):?>
 					<a value="haha" id="<?php echo $article1['id']; ?>" class="btn btn-default btn-sm active" role="button"><img class="img1" src="./img/smile.png" alt="" style="width:25% height:5%"></a>
-					<span class="badge"><?php echo $article1['hahas']; ?></span>
+					
 					<?php else: ?>
 					<a value="haha" id="<?php echo $article1['id']; ?>" class="btn btn-default btn-sm" role="button"><img class="img1" src="./img/smile.png" alt="" style="width:25% height:5%"></a>
-					<span class="badge"><?php echo $article1['hahas']; ?></span>
+					
 					<?php endif; ?>
+					<?php $sid="haha";
+						  $sid.=$article1['id'];
+						  //$sid="like2"
+						 $articlesQuery3=mysql_query("SELECT articles.id,articles.title_name,COUNT(articles_haha.id) AS hahas FROM articles
+							LEFT JOIN articles_haha ON articles.id = articles_haha.article_id WHERE articles.id='{$article1['id']}' GROUP BY articles.id");
+							$roww3=mysql_fetch_array($articlesQuery3);
+					?>
+					<span id="<?php echo $sid; ?>" class="badge"><?php echo $roww3['hahas']; ?></span>
 					</p>
-					<p><?php echo $article1['likes']; ?> people liked</p>
+					
 				</div>
                 </div>
             </div>
             <?php endforeach; ?>
         </div>
-
+		</div>
         <hr>
-
-        <!-- Footer -->
-        <footer class="container1">
-			<div class="navbar navbar-inverse navbar-fixed-bottom navbar-custom">
-				<div class="col-sm-4"></div>
-				<div class="col-lg-4">
-					<p>&#169Copyright -- House Of Diamante , 2016.</p>
-				</div>
-				<div class="col-sm-4">
-					<a href=""><img class="img-responsive"src=""></a>
-				</div>
-			</div>
-		</footer>
+		<div class="col-md-12 text-center" id="paging" style="margin-bottom:40px">
+		<ul class="pagination" >
+			<?php $w=sizeof($articles1)/8;
+				if(sizeof($articles1)%8!=0){
+					$w++;
+				}?>
+			<?php for($r=1;$r<=$w;$r++):?>
+			<li><a id=<?php echo $r; ?>><?php echo $r; ?></a></li>
+			<?php endfor; ?>
+		</ul>
+		</div>
+        
+        
 
     </div>
-    <!-- /.container -->
-
-    <!-- jQuery -->
-    <script src="js/jquery.js"></script>
+    <!-- /.container-->
+	
+	<!-- Footer -->
+	<footer class="container1">
+		<?php include 'footer.php';?>		
+	</footer>
+	
+	<!-- jQuery -->
+	<script src="js/jquery-2.1.1.min.js"></script>
 	<script src="js/photohub.js"></script>
     <!-- Bootstrap Core JavaScript -->
+	
     <script src="js/bootstrap.min.js"></script>
+	<script>
+	$(document).ready(function(){
+	$('#paging ul li a').on('click',function(){
+		var value=$(this).attr('id');
+		//alert(value);
+		
+		
+	});
+	function articlefun(){
+	$('#article p a').on('click',function(){
+		var value=$(this).attr('value');
+		var ide=$(this).attr('id');
+		var sid="#"+value;
+		sid+=ide;
+		 $(this).addClass('active');
+		//alert(sid);
+		$.ajax({
+			url:'likepanel.php',
+			
+			data:{type: value,id: ide},
+			success:function(data){
+				//location.reload();
+				///alert(data);
+				//var ty=$(this).find('span');
+				//alert(sid);
+				$(sid).html(data);
+				//alert($(sid).text());
+			}
+		});
+		
+		
+		return false;
+		});
+	}
+	articlefun();
+	$('#go').on('click', function () {
+	var sname=$('#search').val();
+	//var path="http://localhost:81/hod/photohub.php?";
+	//alert(sname);
+	//var current="updatearticle.php?search=";
+	//current+=sname;
+	//path+=current;
+	$.ajax({
+				url:'updatearticle.php?search='+sname,
+				method:'GET',
+				//data:{sname: sname},
+				success:function(data){
+					
+					$('#article').html(data);
+					//location.href=path;
+					//alert(location.href);
+					articlefun();
+					//window.location = url;
+				}
+			});
+	});
+	});
+	</script>
+    
+    
 
 </body>
 

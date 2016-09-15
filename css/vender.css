@@ -1,0 +1,100 @@
+.modal-content{
+  background-color: rgba(230,238,255,1);
+}
+.panel .panel-heading{
+  background-color: rgba(230,238,255,0.7);
+}
+.panel .panel-footer{
+  background-color: rgba(230,238,255,0.7);
+}
+.psty{
+   background-color: rgba(230,238,255,0.7);
+}
+
+.wrap{
+  padding: 20px 20px 20px 20px;
+}
+#profile-picture{
+  height: 100%;
+  background-color: rgba(230,238,255,0.3);
+  color:#00091a;
+  border-right: 2px solid black;
+}
+
+
+#admin-panel{
+  background-color: rgba(230,238,255,0.3);
+  color:#00091a;
+  height: 100%;
+  
+}
+#vender-picture{
+  padding-left: 20px;
+  height: 250px;
+}
+#vender-facts{
+  padding-left: 40px;
+  padding-top: 100px;
+}
+
+#my-right{
+  text-align: right;
+}
+.panel-body{
+  height: 300px;
+}
+.upload-drop-zone {
+   height: 200px;
+   border-width: 2px;
+   margin-bottom: 50px;
+}
+
+.upload-drop-zone {
+  color: #ccc;
+  border-style: dashed;
+  border-color: #ccc;
+  line-height: 200px;
+  text-align: center
+}
+.upload-drop-zone.drop {
+  color: #222;
+  border-color: #222;
+}
+#message-option{
+  height: 50px;
+}
+#pager1{
+  margin-top: -28px;
+}
+#pages{
+  margin-top: 8px;
+}
+#sent{
+  height: 400px;
+}
+#receive{
+  height: 400px;
+}
+#del{
+ margin-top: 100px;
+}
+#add1{
+   margin-top: 100px;
+}
+#message1{
+   margin-top: 50px;
+}
+#chat1{
+  margin-top: 50px;
+}
+#item{
+ height: 250px;
+ width: 200px;
+
+}
+#dropdown1{
+  background-color: rgba(230,238,255,1);
+}
+.tableheader{
+  background-color: rgba(230,238,255,0.5);
+}

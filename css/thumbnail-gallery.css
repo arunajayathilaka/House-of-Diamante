@@ -4,12 +4,8 @@
  * For details, see http://www.apache.org/licenses/LICENSE-2.0.
  */
 
-body {
-    padding-top: 50px;
-	background-image:url(bg5.jpg);
-	
-	
- /* Required padding for .navbar-fixed-top. Change if height of navigation changes. */
+.transthumb{
+	background-color: rgba(230,238,255,0.5);
 }
 
 .thumb {

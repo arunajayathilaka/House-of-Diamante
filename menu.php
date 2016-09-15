@@ -1,60 +1,28 @@
 <?php
-
-	
+	if(isset($_SESSION['username'])){
+	$query=mysql_query("SELECT image_url FROM customerlogin WHERE username='{$_SESSION['username']}'");
+	while($row1=mysql_fetch_array($query)){
+		$row2=$row1;
+	}
+	}
 	if($_SESSION['er1']=="false"){
 		echo '
-		<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <div class="container-fluid">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-             
-            </div>
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                
-				<ul class="nav navbar-nav navbar-right">
-				  <li><a href="javascript:void(0);" onclick="myFunction2()">Sign Up</a></li>
-				  <li><a href="javascript:void(0);" onclick="myFunction1()">Login</a></li>
-				</ul>
-            </div>
-            <!-- /.navbar-collapse -->
-        </div>
-        <!-- /.container -->
-    </nav>';
+		<div class="row" id="authe" style="float:right;height:20px;" >
+    			<a href="account-sign-in-up.php" style="text-decoration: none !important; cursor:pointer; margin-right:10px;" id="signin"><span class="glyphicon glyphicon-user"></span> Sign In</a>
+
+    			<a href="account-sign-in-up.php" style="text-decoration: none !important; cursor:pointer; margin-right:20px;" id="login"><span class="glyphicon glyphicon-log-in"></span> Log In</a>
+	    </div>';
 		
 	}
 	else{
 		echo '
-		<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <div class="container-fluid">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-             
-            </div>
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                
-				<ul class="nav navbar-nav navbar-right">
-				  <li><a href="logout.php">Log out</a></li>
-				  <li><a href="#" style="background-color=none;"> <img src="http://placehold.it/18x18" class="media-object img-circle pull-left"><span>'.$_SESSION['emailn'].'</span></a></li>
-				</ul>
-            </div>
-            <!-- /.navbar-collapse -->
-        </div>
-        <!-- /.container -->
-    </nav>';
+		<div class="row" id="authe" style="float:right;height:20px;" >
+    			
+    			<a href="#" style="background-color=none;text-decoration: none !important; cursor:pointer;margin-right:10px;"><span> <img src="'.$row2['image_url'].'" class="media-object img-circle pull-left" style="margin-right:4px; width:10%;"><span>'.$_SESSION['emailn'].'</a>
+				<a href="logout.php" src="#" style="text-decoration: none !important; cursor:pointer; margin-right:10px;" id="signin" ><span class="glyphicon glyphicon-user"></span> Log Out</a>
+
+		</div>';
+		
 		
 		
 	}

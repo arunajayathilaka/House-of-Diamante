@@ -20,6 +20,7 @@
 
 .thumbnail {
     padding: 0;
+	background-color: rgba(230,238,255,0.5);
 }
 
 .thumbnail .caption-full {
@@ -27,9 +28,7 @@
     color: #333;
 }
 
-footer {
-    margin: 50px 0;
-}
+
 .rate-btn{
 	display: inline-block;
 }

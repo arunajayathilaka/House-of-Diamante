@@ -1,65 +1,40 @@
 <?php
-session_start();
+//ob_start();
+require_once'init.php';
 ?>
 <html>
 <head>
 <title>HOD</title>
-<meta charset="utf-8">
+
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-  <link rel="stylesheet" href="css/index.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
-  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <!--<link rel="stylesheet" href="css/index.css">-->
+  
+	
  <link rel="stylesheet" href="css/home.css">
  <link rel="stylesheet" type="text/css" href="css/loginForm.css">
  <link rel="stylesheet" type="text/css" href="css/registerForm.css">
  <link rel="stylesheet" type="text/css" href="css/home1.css">
- 
+ <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+
 </head>
-<body>
+<body style="background-image:url(img/bg5.jpg);background-size: 100% 100%;">
 	
-		<div class="s1">
+		
 			<?php 
 			if(isset($_SESSION['er']) && $_SESSION['er']=="true"){$_SESSION['er1']="true";}
 			else{$_SESSION['er1']="false";}?>
 			<?php include 'menu.php' ?>
 		
-	    </div>
-	    
-		<div class="login-block1">
-		<?php include 'registerForm.php'?>
+	   
+			<?php include 'headnav.php';?>
+		
+		
+		
 			
-		</div>	
-		<div class="login-block">
-		<?php include 'loginForm.php'?>
-		</div>
-	<div class="container2">
-	
-			<div class="row " id="MainMenu">
-				<div class="list-group panel visible-xs">
-					
-							<a id="list1"href="#why"class="icon list-group-item" data-toggle="collapse" data-parent="#MainMenu"  style="font-size:25px;" > <i id="list0" class="glyphicon glyphicon-th-list" ></i></a>
-						
-							
-							<div class="collapse" id="why">
-									<a id="list2"href="#home" class="list-group-item" data-toggle="collapse" data-parent="#SubMenu1">Showcase</a>
-									<a id="list2" href="#news" class="list-group-item" >Design</a>
-									<a id="list2" href="#contact" class="list-group-item" >Vmirror</a>
-									<a id="list2"href="#about" class="list-group-item" >Photohub</a>
-									
-							</div>
 				
-				</div>
-				
-				<div class="col-sm-4  hidden-xs ">
-							<a id="list3" href="#home" class="list-group-item  " data-toggle="collapse">Showcase</a>
-							<a id="list3" href="#news" class="list-group-item " data-toggle="collapse">Design</a>
-							<a id="list3" href="#contact" class="list-group-item " data-toggle="collapse">Vmirror</a>
-							<a id="list3" href="#about" class="list-group-item  " data-toggle="collapse"> <i class="glyphicon glyphicon-camera" ></i> Photohub</a>
-
-				</div>
-				
-				<div class="col-sm-8 " id="slider1">
+    		<div class="row">
+				<div class="col-sm-12" id="slider1">
 					<a href="#">
 						<img src="img/sliders/1.jpg" />
 					</a>
@@ -72,34 +47,54 @@ session_start();
 					<a href="#">
 						<img src="img/sliders/4.jpg"/>
 					</a>
-					<a href="#">
-						<img src="img/sliders/5.jpg"/>
-					</a>
-					<a href="#">
-						<img src="img/sliders/6.jpg"/>
-					</a>
+					
 				</div>
 			
 			</div>
-		</div>
-    <div class="logo-wrap">
-    	<img src="img/logo2.png" alt="logo" >
-    </div>
-	
-    <footer class="container1">
-			<div class="navbar navbar-inverse navbar-fixed-bottom navbar-custom">
-				<div class="col-sm-4"></div>
-				<div class="col-lg-4">
-					<p>&#169Copyright -- House Of Diamante , 2016.</p>
-				</div>
-				<div class="col-sm-4">
-					<a href=""><img class="img-responsive"src=""></a>
-				</div>
+		
+		<div class="row">
+			<div class="col-md-12 text-center" style="background-color:#e6eeff;opacity: 0.5; height:auto;margin-bottom:80px; margin-top:50px;">
+			<img src="img/floral.png" class="img-responsive center-block" style="">
+				<h1 class="text-center">Welcome</h1>
+				<p class="text-center" style="margin-right:100px;color:#00091a;">Thank you for visiting hod.lk <br/>We want to take this opportunity to thank you for your patronage. We know you have many 
+					choices for your gift needs, we are honored that you have selected us, <br/> and we appreciate your business.</p>
+			<img src="img/floral-d.png" class="img-responsive center-block" style="">
 			</div>
-		</footer>
+			
+		</div>
+		<div class="row row-centered" id="detail">
+					<div class="col-sm-4 text-center" style="background-image:url(img/photohub.png); background-repeat:no-repeat; background-size: 100% 100%;" id="photohubdetail">
+						<h2 class="text-center" style="color:#100c3e;">Photohub</h2>
+					<p class="text-center"style="padding-left:0px; color:#1b1464;">
+						Photohub is the place where people can upload images to it.and knowing about new jewellery trends.
+					</p>
+					<img src="img/photohubs.png" style="height:30%; opacity:0.8;" class="img-responsive center-block"/>
+					</div>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+					<div class="col-sm-4 " style="background-image:url(img/designs.png); background-repeat:no-repeat; background-size: 100% 100%;"  id="designdetail">
+						<h2 class="text-center" style="color:#100c3e;">Design</h2>
+						<p class="text-center" style="padding-left:0px; color:#1b1464;">
+						Design is the platform that people can recreate jewellery as they prefered.
+						</p>
+						<img src="img/design.png" style="height:30%; opacity:0.8;" class="img-responsive center-block" />
+					</div>
+					<div class="col-sm-4 text-center" style="background-image:url(img/vrs.png); background-repeat:no-repeat; background-size: 100% 100%;" id="vrdetail">
+						<h2 class="text-center" style="color:#100c3e;">Vitual Mirror</h2>
+						<p class="text-center" style="padding-left:0px;color:#1b1464;">
+						Vmirror is the place where people can try out jewellery in virtual enviroment.</p>
+						<img src="img/vr.png" style="height:30%; opacity:0.8;" class="img-responsive center-block" />
+						
+					</div>
+				</div>
+				
+	
+    <footer class="container1" style="">
+		<?php include 'footer.php';?>	
+	</footer>
+
+<script src="js/jquery.js"></script>
 <script src="js/home.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <script src="js/slider.js"></script>
 
 

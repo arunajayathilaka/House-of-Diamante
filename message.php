@@ -16,7 +16,7 @@
 			//start with that receiver
 			$re="";
 		}
-	
+	if(!empty($_SESSION['username'])){
 	$sender=$_SESSION['username'];
 	$receiver=$re;
 	$messages=get_msg($sender,$receiver);
@@ -34,7 +34,7 @@
 				<div class="pull-right" class="media-body" >
 				'.$message['message'].'
 				<br />
-				<small class="text-muted">'.$message['sender'].'| 23rd June at 5:00pm</small>
+				<small class="text-muted">'.$message['sender'].'| '.$message['updated_date'].' at '.$message['updated_time'].' </small>
 				
 			    </div>
 			
@@ -57,7 +57,7 @@
 				<div class="media-body" >
 				'.$message['message'].'
 				<br />
-				<small class="text-muted">'.$message['sender'].'| 23rd June at 5:00pm</small>
+				<small class="text-muted">'.$message['sender'].'| '.$message['updated_date'].' at '.$message['updated_time'].'</small>
 				
 			    </div>
 			
@@ -68,5 +68,6 @@
 	<hr />';
 		}
 	
+	}
 	}
 ?>

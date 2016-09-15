@@ -17,9 +17,12 @@
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 	<link href="css/bootstrap.css" rel="stylesheet">
     <!-- Custom CSS -->
     <link href="css/thumbnail-gallery.css" rel="stylesheet">
+	
+	<link href="css/home.css" rel="stylesheet">
 	<link href="css/profile.css" rel="stylesheet">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -31,60 +34,30 @@
 
 </head>
 
-<body style=" background-image: img/bg5.jpg" >
+<body style="background-image:url(img/bg5.jpg);background-size: 100% 100%;" >
 
-    <!-- Navigation -->
-    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <div class="container-fluid">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-             
-            </div>
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">
-                    <li>
-                        <a href="#">Showcase</a>
-                    </li>
-                    <li>
-                        <a href="#">Design</a>
-                    </li>
-                    <li>
-                        <a href="#">Vmirror</a>
-                    </li>
-					 <li>
-                        <a href="#">Photohub</a>
-                    </li>
-                </ul>
-				<ul class="nav navbar-nav navbar-right">
-				  <li><a href="#">Sign Up</a></li>
-				  <li><a href="#">Login</a></li>
-				</ul>
-            </div>
-            <!-- /.navbar-collapse -->
-        </div>
-        <!-- /.container -->
-    </nav>
+    <?php 
+			if(isset($_SESSION['er']) && $_SESSION['er']=="true"){$_SESSION['er1']="true";}
+			else{$_SESSION['er1']="false";}?>
+			<?php include 'menu.php' ?>
+		
+	   
+			<?php include 'headnav.php';?>
 
     <!-- Page Content -->
-    <div class="container-fluid">
+    <div class="container-fluid" style="margin-top:50px;">
 		<div class="row">
-			<div class="col-sm-3 sidenav">
+			<div class="col-sm-3 sidenav" style="height:550px;">
 				
 				<div class="row" style="background-color:grey">
-					<img align="center" class="fb-image-profile thumbnail" src="img/users/user.png" alt="Profile image example"/>
+				<div class="span12" style="text-align: center">  
+					<img class="thumbnail text-center" style="height:150px; width:150px; margin: 20px 90px 20px 90px;" src="img/users/user.png" alt="Profile image example"/>
 					<br>
 				</div>
-				
+				</div>
 				<div class="row">
 					<h1 class="text-center">Info</h1>
-					<p class="text-center">Ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>
+					<p class="text-center">Tharindu Ishanka<br>tharindu.ishanka1994@gmail.com<br>077-1947574</p>
 				</div>
 			  <!---  <div class="fb-profile" >
 			   
@@ -101,7 +74,7 @@
 				
 			
 			
-			<div class="col-sm-9 sidenav" >
+			<div class="col-sm-9 sidenav" style="height:550px;">
 				<br>
 				<div class="row">
 					<ul class="nav nav-tabs" style="margin-left: 50px;">
@@ -130,11 +103,10 @@
 								<div class="panel-footer">
 									<form action="#" method="get" id="form_input">
 										<div class="input-group">
-									
-														<input type="text" class="form-control" name="message" id="message" placeholder="Enter Message" />
-														<span class="input-group-btn">
-															<button class="btn btn-info" id="send" name="send" type="submit">SEND</button>
-														</span>
+											<input type="text" class="form-control" name="message" id="message" placeholder="Enter Message" />
+											<span class="input-group-btn">
+											<button class="btn btn-info" id="send" name="send" type="submit">SEND</button>
+											</span>
 														
 										</div>
 									</form>
@@ -156,11 +128,11 @@
 
 																<div class="media" >
 																<div class="vendor">
-																	<a class="pull-left" value="ranil" >
+																	<a class="pull-left" value="mallika" >
 																		<img class="media-object img-circle" style="max-height:40px;" src="img/users/user0.png" />
 																	</a>
 																	<div class="media-body" >
-																		<h5>ranil | User </h5>
+																		<h5>mallika | vendor </h5>
 																		
 																	   <small class="text-muted">Active From 3 hours</small>
 																	</div>
@@ -178,15 +150,116 @@
 					</div>
 					
 					<div id="menu2" class="tab-pane fade">
-						<p>rt</p>
+						
 					</div>
 					
 					<div id="menu1" class="tab-pane fade">
-						<h1>rt</h1>
+						<p>Name:</p>
+						<p>Address:</p>
+						<p>Telephone no:</p>
+						<p>Jewelleries designed by yourself:</p>
+
+						<!--add image gallery for customer designs -->
+
+						<div class="row">
+						  <div class="col-md-3">
+						    <a href="bangle.png" class="thumbnail">
+						      <p>Type:Bangle<br>Metal:Gold<br>Size:5</p>
+						      <img src="bangle.png" alt="Pulpit Rock">
+						    </a>
+						  </div>
+						  <div class="col-md-3">
+						    <a href="chain.png" class="thumbnail">
+						      <p>Type:Chain<br>Metal:Gold<br>Size:5</p>
+						      <img src="chain.png" alt="Moustiers Sainte Marie">
+						    </a>
+						  </div>
+						  <div class="col-md-3">
+						    <a href="bracelet.png" class="thumbnail">
+						      <p>Type:Bracelet<br>Metal:Gold<br>Size:5</p>
+						      <img src="bracelet.png" alt="Cinque Terre">
+						    </a>
+						  </div>
+						</div>
 					</div>
 					
 					<div id="menu4" class="tab-pane fade">
-						<h1>rt</h1>
+						
+						<p id="name">Tharindu Ishanka</p>
+						<button class="btn btn-primary btn-md " data-toggle="modal" data-target="#myModal">change
+						</button>
+					
+						<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+							<div class="modal-dialog">
+								<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal" aria-hidden="true">HOD
+									</button>
+									<h4 class="modal-title" id="myModalLabel">
+										change name
+									</h4>
+								</div>
+								<div class="modal-body">
+									add new name here
+									<form action="profile-controll.php" method="post">
+										<input type="text" name="name">
+										<input type="submit">
+									</form>
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-default" data-dismiss="modal">
+									close
+									</button>
+									<button type="button" class="btn btn-primary" data-dismiss="modal">
+									save changes
+									</button>
+
+								</div>
+									
+								</div>
+							</div>
+						</div>
+
+						
+							<p>change password:</p>
+						<button class="btn btn-primary btn-md " data-toggle="modal" data-target="#myModal">change
+						</button>
+						
+
+						<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+							<div class="modal-dialog">
+								<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal" aria-hidden="true">HOD
+									</button>
+									<h4 class="modal-title" id="myModalLabel">
+										change password
+									</h4>
+								</div>
+								<div class="modal-body">
+									add new password here
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-default" data-dismiss="modal">
+									close
+									</button>
+									<button type="button" class="btn btn-primary" data-dismiss="modal">
+									save changes
+									</button>
+
+								</div>
+									
+								</div>
+							</div>
+						</div>
+
+
+												
+						<br><br>
+						<form action="" method="post" enctype="multipart/form-data">
+							Change profile picture:
+							<input type="file" name="fileToUpload" id="fileToUpload">
+						</form>
 					</div>
 					
 					
@@ -199,17 +272,9 @@
     </div>  
 
         <!-- Footer -->
-        <footer class="container1">
-			<div class="navbar navbar-inverse navbar-fixed-bottom navbar-custom">
-				<div class="col-sm-4"></div>
-				<div class="col-lg-4">
-					<p>&#169Copyright -- House Of Diamante , 2016.</p>
-				</div>
-				<div class="col-sm-4">
-					<a href=""><img class="img-responsive"src=""></a>
-				</div>
-			</div>
-		</footer>
+    <footer class="container1" style="">
+		<?php include 'footer.php';?>	
+	</footer>
 
     </div>
     <!-- /.container -->

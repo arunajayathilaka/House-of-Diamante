@@ -3,7 +3,7 @@ $(document).ready(function(){
     $("#slider1 a").first().show();
 
     var index = 0;
-    var count = 5;
+    var count = 3;
 
     function bannerRotator() {
         $('#slider1 a').delay(4300).eq(index).fadeOut(function() { 

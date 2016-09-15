@@ -9,7 +9,7 @@
 	}
 	
 		
-	$sender=$_SESSION['username'];;
+	$sender=$_SESSION['username'];
 	$receiver=$re;
 	 if(isset($_GET['message']) && !empty($_GET['message'])){
 		$message=$_GET['message'];

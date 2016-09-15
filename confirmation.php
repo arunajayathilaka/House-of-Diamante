@@ -1,15 +1,6 @@
 <?php
-session_start();
-$servername = "localhost";
-$mysqlusername = "root";
-$password = "";
-$dbname = "houseofdiamante";
-$email="";
-$password="";
-$username="";
-// Create connection
-@mysql_connect("$servername","$mysqlusername","$password");
-@mysql_select_db("$dbname") or die("couldn't connect db");
+
+require_once 'init.php';
 
 $passkey=$_GET['passkey'];
 
@@ -22,8 +13,9 @@ while ($row = mysql_fetch_array($result))
 			$email=$row['email'];
 			$username=$row['username'];
 			$password=$row['password'];
-			$sql1="INSERT INTO customerlogin (username,email,password)
-					VALUES ('$username', '$email', '$password')";
+			$sql1="INSERT INTO customerlogin (username,email,password,image_url)
+					VALUES ('$username', '$email', '$password','http://placehold.it/50x50')";
+			@mysql_query("DELETE FROM temp_customerlogin WHERE username='{$username}'");
         }
         else{
         	
@@ -36,6 +28,7 @@ while ($row = mysql_fetch_array($result))
 if(mysql_query($sql1)){
 	$_SESSION['er']="true";
 	$_SESSION['emailn']="$email";
+	$_SESSION['username']="$username";
 	header("Location: index.php");
 }
 else{

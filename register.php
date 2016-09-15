@@ -1,15 +1,7 @@
 <?php
 
-$servername = "localhost";
-$mysqlusername = "root";
-$password = "";
-$dbname = "houseofdiamante";
-$email="";
-$password="";
-$username="";
-// Create connection
-@mysql_connect("$servername","$mysqlusername","$password") or die("couldn't connect to mysql");;
-@mysql_select_db("$dbname") or die("couldn't connect db");
+require_once 'init.php';
+
 // Check connection
 $confirm_code= md5(uniqid(rand()));
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -17,10 +9,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	$username=$_POST["u"];
     $email = $_POST["e"];
     $password=$_POST["p"];
-	
+	$pwdhashid=md5($password);
 }
 $sql = "INSERT INTO temp_customerlogin (confirm_code,username,email,password)
-VALUES ('$confirm_code','$username', '$email', '$password')";
+VALUES ('$confirm_code','$username', '$email', '$pwdhashid')";
 
 if(mysql_query($sql)){
 		// send e-mail to ...

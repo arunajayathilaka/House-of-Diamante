@@ -5,66 +5,49 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="description" content="">
+		<meta name="author" content="">
 		<title>Showcase</title>
-		<link rel="stylesheet" type="text/css" media="screen" href="css/CSSreset.min.css" />
-		<link rel="stylesheet" type="text/css" media="screen" href="css/als_demo.css" />
-		<link rel="stylesheet" type="text/css" media="screen" href="css/listscroller.css" >
-		<link href="css/thumbnail-gallery.css" rel="stylesheet">
-		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<!-- Bootstrap Core CSS -->
 		<link href="css/showcase.css" rel="stylesheet">
-		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+		
+		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" media="screen" href="css/CSSreset.min.css">
+		<link rel="stylesheet" type="text/css" media="screen" href="css/als_demo.css">
+		<link rel="stylesheet" type="text/css" media="screen" href="css/listscroller.css" >
+		<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+		
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<link href="css/thumbnail-gallery.css" rel="stylesheet">
+		<link href="css/home.css" rel="stylesheet">
+		
 	</head>
-	<body>
-		<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <div class="container-fluid">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-             
-            </div>
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">
-                    <li>
-                        <a href="#">Showcase</a>
-                    </li>
-                    <li>
-                        <a href="#">Design</a>
-                    </li>
-                    <li>
-                        <a href="#">Vmirror</a>
-                    </li>
-					 <li>
-                        <a href="#">Photohub</a>
-                    </li>
-                </ul>
-				<ul class="nav navbar-nav navbar-right">
-				  <li><a href="#">Sign Up</a></li>
-				  <li><a href="#">Login</a></li>
-				</ul>
-            </div>
-            <!-- /.navbar-collapse -->
-        </div>
-        <!-- /.container -->
-    </nav>
+	<body style="background-image:url(img/bg5.jpg);background-size: 100% 100%;">
+		
+		<?php 
+		if(isset($_SESSION['er']) && $_SESSION['er']=="true"){$_SESSION['er1']="true";}
+		else{$_SESSION['er1']="false";}?>
+		<?php include 'menu.php' ?>
+		
+		<?php include 'headnav.php';?> 
+	    
+		
+	
 		<div class="container">
 			<div class="row" >
-				<section id="content" style="background-color:#B57E72; height:180px; border-radius: 10px 10px 10px 10px;">
+				<section id="content" style="background-color: rgba(230,238,255,0.4); height:180px; width:100%;">
 					
 					<div id="lista1" class="als-container">
 						<span class="als-prev"><img src="img/listscroller/thin_left_arrow_333.png" alt="prev" title="previous" /></span>
-						<div class="als-viewport">
+						<div class="als-viewport" id="vendorlt">
 							<ul class="als-wrapper">
-								<li class="als-item" value="Neha Jewellery" onclick="document.getElementById('shopImage').src='img/als-images/n.png'"><img src="img/als-images/n.png"/>Neha Jewellers</li>
-								<li class="als-item" value="mallika" onclick="document.getElementById('shopImage').src='img/als-images/h.png'"><img src="img/als-images/h.png"/>Mallika</li>
-								<li class="als-item" value="cjs" onclick="document.getElementById('shopImage').src='img/als-images/cjs.png'"><img src="img/als-images/cjs.png"/>CJS</li>
-								<li class="als-item" value="kendra scot" onclick="document.getElementById('shopImage').src='img/als-images/ks.png'"><img src="img/als-images/ks.png"/>Kendra Scot</li>
-								<li class="als-item" value="ambika jewellers" onclick="document.getElementById('shopImage').src='img/als-images/ambika-jewellers.png'"><img src="img/als-images/ambika-jewellers.png"/>Ambika Jewellers</li>
+								<li class="als-item" value="Neha Jewellery" style="background-color:rgba(230,238,255,0.5); padding-bottom:24px;padding-left:15px;padding-right:15px;"onclick="document.getElementById('shopImage').src='img/als-images/n.png'"><img src="img/als-images/n.png"/>Neha Jewellers</li>
+								<li class="als-item" value="mallika" style="background-color:rgba(230,238,255,0.5); padding-bottom:24px;padding-left:15px;padding-right:15px;" onclick="document.getElementById('shopImage').src='img/als-images/h.png'"><img src="img/als-images/h.png"/>Mallika</li>
+								<li class="als-item" value="cjs" style="background-color:rgba(230,238,255,0.5); padding-bottom:24px;padding-left:15px;padding-right:15px;" onclick="document.getElementById('shopImage').src='img/als-images/cjs.png'"><img src="img/als-images/cjs.png"/>CJS</li>
+								<li class="als-item" value="kendra scot" style="background-color:rgba(230,238,255,0.5); padding-bottom:24px;padding-left:15px;padding-right:15px;" onclick="document.getElementById('shopImage').src='img/als-images/ks.png'"><img src="img/als-images/ks.png"/>Kendra Scot</li>
+								<li class="als-item" value="ambika jewellers" style="background-color:rgba(230,238,255,0.5); padding-bottom:24px;padding-left:15px;padding-right:15px;" onclick="document.getElementById('shopImage').src='img/als-images/ambika-jewellers.png'"><img src="img/als-images/ambika-jewellers.png"/>Ambika Jewellers</li>
 								<!--<li class="als-item"><img src="images/als-images/cut.png" alt="scissors" title="scissors" />scissors</li>
 								<li class="als-item"><img src="images/als-images/heart.png" alt="heart" title="heart" />heart</li>
 								<li class="als-item"><img src="images/als-images/map.png" alt="pin" title="pin" />pin</li>
@@ -86,10 +69,10 @@
 						<div class="modal-dialog modal-lg">
 						
 						  <!-- Modal content-->
-						  <div class="modal-content">
+						  <div class="modal-content" style="background-color: rgba(230,238,255,1);">
 							<div class="modal-header">
-							  <button type="button" class="close" data-dismiss="modal">&times;</button>
-							  <h4 class="modal-title">Modal Header</h4>
+							 
+							  <h4 class="modal-title">Compare</h4>
 							</div>
 							<div class="modal-body">
 								<div id="compareitem" class="row">
@@ -109,7 +92,7 @@
 							</div>
 							</div>
 							<div class="modal-footer">
-							  <button type="button" class="btn btn-default" onclick="btnfunc()">Close</button>
+							  <button type="button" class="btn btn-info" onclick="btnfunc()">Close</button>
 							</div>
 						  </div>
 						  
@@ -120,9 +103,9 @@
 						
 							<form class="navbar-form" role="search">
 								<div class="input-group">
-								  <input class="form-control" placeholder="Search">
+								  <input class="form-control" style="color:"placeholder="Search">
 								  <div class="input-group-btn">
-									<button class="btn btn-default" type="button">GO!</button>
+									<button class="btn btn-info" type="button">GO!</button>
 									
 								  </div>
 								 
@@ -136,11 +119,11 @@
 						<div id="productlist">
 						<?php foreach($products as $product1):?>
 						<div class="col-sm-4 col-lg-4 col-md-4">
-							<div class="thumbnail">
-								<img src="http://placehold.it/320x150" alt="">
+							<div class="thumbnail" style="background-color: rgba(230,238,255,0.5); border: 3px solid #218dfb;">
+								<img src="<?php echo $product1['image_url']; ?>" style="height:30%;" alt="">
 								<div class="caption">
 									<h4 class="pull-right"><?php echo $product1['product_price']; ?></h4>
-									<h4><a href="#"><?php echo $product1['product_name']; ?></a>
+									<h4><a style="color:white;"href="#"><?php echo $product1['product_name']; ?></a>
 									</h4>
 									<p><?php echo $product1['product_dec']; ?></p>
 								</div>
@@ -159,9 +142,9 @@
 					</div>
 					
 					<div class="col-md-4">
-						 <p id="lead" class="lead">Shop Name</p>
-							<div class="thumbnail" style="height:250px; width:250px;">
-                            <img id="shopImage" src="http://placehold.it/250x250" alt="">
+						 <p id="lead" class="lead" style="color:white;">Shop Name</p>
+							<div class="thumbnail" style="height:250px;background-color: rgba(230,238,255,0.5);  width:250px;border: 3px solid #218dfb;">
+                            <img id="shopImage" src="img/selectv.png" alt="">
 							</div>
 							<div class="ratings" >
                                 
@@ -176,27 +159,18 @@
 								</div>
                             </div>
 							<div id="type" class="list-group">
-								<a class="list-group-item" value="ring">Rings</a>
-								<a class="list-group-item" value="earings">Earings</a>
-								<a class="list-group-item" value="neckles">Neckles</a>
+								<a class="list-group-item" style="background-color: rgba(230,238,255,0.5); cursor:pointer; margin-bottom:10px;" value="ring">Rings</a>
+								<a class="list-group-item" style="background-color: rgba(230,238,255,0.5);cursor:pointer; margin-bottom:10px;" value="earings">Earings</a>
+								<a class="list-group-item" style="background-color: rgba(230,238,255,0.5);cursor:pointer; margin-bottom:10px;" value="neckles">Neckles</a>
 							</div>
 					</div>
 					
 			</div>
-
-			<footer class="container1">
-				<div class="navbar navbar-inverse navbar-fixed-bottom navbar-custom">
-					<div class="col-sm-4"></div>
-					<div class="col-lg-4">
-						<p>&#169Copyright -- House Of Diamante , 2016.</p>
-					</div>
-					<div class="col-sm-4">
-						<a href=""><img class="img-responsive"src=""></a>
-					</div>
-				</div>
-			</footer>
 		
 		</div>
+	<footer class="container1">
+		<?php include 'footer.php';?>		
+	</footer>
 	
 	<script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
 		<script type="text/javascript" src="js/jquery.als-1.7.min.js"></script>
@@ -208,37 +182,9 @@
 			comparenow.disabled=true; 
 			$( "input[type='checkbox']" ).prop({disabled:false});
 			$( "input[type='checkbox']" ).prop({checked:false});
+			$('#myModal').modal('hide');
 		}
-		var choice=[];
-		var Checked = function() {
-			//alert('rer');
-		  var n = $( "input:checked" ).length;
-		  var val1=$( "input:checked:last" ).val();
-		  var val2=$( "input:checked:first" ).val();
-		  //alert(val1+""+val2);
-		  
-		  if(n==2){
-			  choice.push(val1);
-			  choice.push(val2);
-			  //val="";
-			  //alert(val);
-			  comparenow.disabled=false;
-			  $( "input[type='checkbox']" ).prop({disabled: true});
-			  $.ajax({
-						url:'compareitems.php',
-						method:'POST',
-						data:{item1:choice[0],item2:choice[1]},
-						success:function(data){
-							//alert("done");
-							choice=[];
-							$('#compareitem').html(data);
-						}
-					});
-		  }
-		};
-		 
-		$('input[type=checkbox]').on("click",Checked );
-		
+	
 			$(document).ready(function() 
 			{
 				$("#lista1").als({

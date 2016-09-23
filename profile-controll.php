@@ -4,7 +4,7 @@ require_once 'init.php';
 if(isset($_POST["name"])){
 	$name=$_POST["name"];
 
-$sql = "UPDATE customerlogin SET username='$name' WHERE id=4";
+$sql = "UPDATE customerlogin SET username='$name' WHERE id=7";
 //$_SESSION["new_name"] = $sql;
 
 if(mysql_query($sql)){
@@ -20,7 +20,7 @@ else{
 if (isset($_POST["pword"])) {
 	$name = $_POST["pword"];
 
-	$sql2 = "UPDATE customerlogin SET password='$name' WHERE id=4";
+	$sql2 = "UPDATE customerlogin SET password='$name' WHERE id=7";
 
 	if (mysql_query($sql2)) {
 		echo "done-updated";
@@ -34,7 +34,7 @@ if (isset($_POST["pword"])) {
 if (isset($_POST["email"])) {
 	$name = $_POST["email"];
 
-	$sql3 = "UPDATE customerlogin SET email='$name' WHERE id=4";
+	$sql3 = "UPDATE customerlogin SET email='$name' WHERE id=7";
 
 	if (mysql_query($sql3)) {
 		echo "done-updated2";
@@ -44,6 +44,14 @@ if (isset($_POST["email"])) {
 		exit();
 	}
 }
+
+//$name_sql = "UPDATE `customerlogin` SET `username` = 'name' WHERE `id` = 7";
+//$name_sql_run = mysql_query($name_sql);
+
+
+
+
+
 
 /*upload image to the database */
 
@@ -63,16 +71,16 @@ if (isset($_POST["submit"])) {
 }
 
 if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-	$query_upload = "UPDATE `customerlogin` SET `image_url` = '$target_file' WHERE `id` = '4'";
+	$query_upload = "UPDATE `customerlogin` SET `pro_pic` = '$target_file' WHERE `id` = '7'";
 	mysql_query($query_upload) or die("error in uplaod".mysql_error());
 }else{
 	exit("error while uploading to the server");
 }
 
-$select_query = "SELECT `image_url` FROM `customerlogin` WHERE `id` = '4' ";
+$select_query = "SELECT `pro_pic` FROM `customerlogin` WHERE `id` = '7' ";
 $sql_run = mysql_query($select_query) or die(mysql_error());
 while ($row = mysql_fetch_array($sql_run)) {
-	$image_name = $row['image_url'];
+	$image_name = $row['pro_pic'];
 	//echo $image_name;
 	$file=$_FILES['fileToUpload']['name'];
 	//echo <img src=$row['image_url']."fileToUpload"/>;

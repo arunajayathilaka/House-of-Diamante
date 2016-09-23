@@ -1,6 +1,9 @@
 <?php
+//session_start();
  require_once 'core.inc.php';
  //$_SESSION['receiver1']="ranil";
+ $_SESSION['username']="Tharindu";
+ //echo $name1;
 ?>
 
 <html>
@@ -32,9 +35,33 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
+    <!--<script type="text/javascript">
+    	function AutoRefresh(t){
+    		setTimeout("location.reload(true);",t)
+    	}
+    </script>>-->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="jQuery/jquery-1.11.1.min.js"></script>
+    		
+    </script>
+
+    <script>
+    	$(document).ready(function(){
+    		$('[name="view_not"]').click(function(event){
+    			$.post("notification.php",{no_id: event.target.id},function(data){
+    				$('[name="'+event.target.id+'"]').html(data);
+    			});
+    		});
+    	});
+    </script>>
+    
+
+
+
 </head>
 
-<body style="background-image:url(img/bg5.jpg);background-size: 100% 100%;" >
+<body style="background-image:url(img/bg5.jpg);background-size: 100% 100%;">
 
     <?php 
 			if(isset($_SESSION['er']) && $_SESSION['er']=="true"){$_SESSION['er1']="true";}
@@ -51,13 +78,44 @@
 				
 				<div class="row" style="background-color:grey">
 				<div class="span12" style="text-align: center">  
-					<img class="thumbnail text-center" style="height:150px; width:150px; margin: 20px 90px 20px 90px;" src="img/users/user.png" alt="Profile image example"/>
+					<!--<img class="thumbnail text-center" style="height:150px; width:150px; margin: 20px 90px 20px 90px;" src="img/users/user.png" alt="Profile image example"/>-->
+					<div id="proPic">
+						<?php 
+							$path="";
+							$query_image = "SELECT `pro_pic` FROM `customerlogin` WHERE username='{$_SESSION['username']}'";
+							if ($query_image_run = mysql_query($query_image)) {
+								$row = mysql_fetch_assoc($query_image_run);
+								$path = $row['pro_pic'];
+							}
+
+						?>
+						<img id="propic1" class="thumbnail text-center" style="height:150px; width:150px;margin: 20px 90px 20px 90px;" 
+						src="<?php echo $path;?>">
+
+
+					</div>
 					<br>
 				</div>
 				</div>
 				<div class="row">
 					<h1 class="text-center">Info</h1>
-					<p class="text-center">Tharindu Ishanka<br>tharindu.ishanka1994@gmail.com<br>077-1947574</p>
+					<p class="text-center"><!--Tharindu Ishanka<br>tharindu.ishanka1994@gmail.com<br>077-1947574-->
+						<?php
+							$details = "SELECT `username`,`email` FROM `customerlogin` WHERE `id` = 7 ";
+							if ($details_run = mysql_query($details)) {
+								while ($row = mysql_fetch_assoc($details_run)) {
+									echo $row['username'];
+									echo "<br>";
+									echo $row['email'];
+									
+								}
+							}
+
+
+						?>
+
+
+					</p>
 				</div>
 			  <!---  <div class="fb-profile" >
 			   
@@ -78,8 +136,11 @@
 				<br>
 				<div class="row">
 					<ul class="nav nav-tabs" style="margin-left: 50px;">
-					  <li><a href="#menu1">Profile</a></li>
-					  <li><a href="#menu2">Notification <span class="badge">42</span></a></li>
+					  <li><a href="#menu1">Images</a></li>
+					  <li><a href="#menu2">Notification <span class="badge"><?php $num_not = mysql_query("SELECT * FROM `notification` WHERE `customer`= '{$_SESSION['username']}' AND `view`= 'no'");
+					  echo mysql_num_rows($num_not); 
+
+					  ?></span></a></li>
 					  
 					  <li class="active"><a href="#menu3">Messages <span class="badge">3</span></a></li>
 					  <li><a href="#menu4">Settings</a></li>
@@ -150,13 +211,108 @@
 					</div>
 					
 					<div id="menu2" class="tab-pane fade">
+						<h3>Your Notifications.....</h3>
+						<hr />
+						<?php 
+							$query = mysql_query("SELECT * FROM `notification` WHERE `customer` = 'Tharindu' AND `view` = 'no'");
+							if (mysql_num_rows($query) == NULL) {
+									echo "no new notifications";
+									//exit();
+						}
+						while ($fetch = mysql_fetch_assoc($query)) {
+							$id = $fetch['not_id'];
+							$vendor = $fetch['vendor'];
+
+						?>
+						<div class="text-center" style="width:90%; height:75px;background:grey;color:white;padding:20px;margin-bottom:10px;">
+							<div class="pull-left">
+								<?php echo $vendor;?> has sent you a quoatation
+							</div>
+
+
+							<button class="btn btn-info pull-right" style="margin-right:10px;" data-toggle="modal" data-target="#myModal5" type="submit" name="view_not" id="<?php echo $id;?>">view</button>
+							<label name="<?php echo $id;?>"></label>
+							<!-- modal-->
+							<div class="modal fade" id="myModal5" tabindex="-1" role="dialog" aria-labelledby="myModalLabel5" aria-hidden="true">
+								<div class="modal-dialog">
+									<div class="modal-content">
+										<div class="modal-header">
+											<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          									<h4 class="modal-title" id="myModalLabel5" style="color:black;">quoatation</h4>
+										</div>
+										<div class="modal-body">
+											<div class="row">
+												<div class="col-md-3">
+													<a href="#" class="thumbnail">
+														<img src="designed-items/bangle.png" style="height:100px;"/>
+													</a>
+												</div>
+												<label style="color:black;">estimated price:</label>
+											</div>
+										</div>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+										</div>
+									</div>
+								</div>
+							</div>
+
+
+						</div>
+
+						<?php 
+							}
+						?>
+
+						<?php 
+							$query2 = "SELECT * FROM `notification` WHERE `customer` = 'Tharindu' AND `view` = 'yes'";
+							$query2_run = mysql_query($query2);
+							while ($rows2 = mysql_fetch_assoc($query2_run)) {
+								$vendor2 = $rows2['vendor'];
+								?>
+								<div class="text-center" style="width:90%; height:75px;background:blue;color:white;padding:20px;margin-bottom:10px;"> 
+									<div class="pull-left">
+										<?php echo $vendor2;?> has sent you a quoatation
+										<label style="margin-left:45%; position:absolute; margin-top:20px;">viewed</label>
+									</div>
+
+									<button class="btn btn-info pull-right" data-toggle="modal" data-target="#myModal6">
+									view</button>
+
+									<div class="modal fade" id="myModal6" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+										<div class="modal-dialog">
+											<div class="modal-content">
+												<div class="modal-header">
+													<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times</button>
+													<h4 class="modaal-title" id="myModalLabel">title</h4>
+												</div>
+												<div class="modal-body">some text</div>
+												<div class="modal-footer">
+													<button type="button" class="btn btn-primary">changes</button>
+												</div>
+											</div>
+										</div>
+									</div>
+
+
+
+								</div>
+
+								<?php
+								}
+								?>
+
+
+
+
+
+
+
 						
 					</div>
 					
 					<div id="menu1" class="tab-pane fade">
-						<p>Name:</p>
-						<p>Address:</p>
-						<p>Telephone no:</p>
+						
 						<p>Jewelleries designed by yourself:</p>
 
 						<!--add image gallery for customer designs -->
@@ -185,15 +341,34 @@
 					
 					<div id="menu4" class="tab-pane fade">
 						
-						<p id="name">Tharindu Ishanka</p>
-						<button class="btn btn-primary btn-md " data-toggle="modal" data-target="#myModal">change
+						<p>
+							
+
+							<?php $name = "Tharindu Ishanka";
+							$query = "SELECT `username` FROM `customerlogin` WHERE `id` = 7";
+							if ($query_run = mysql_query($query)) {
+								while ($row = mysql_fetch_assoc($query_run)) {
+									$new_name = $row['username'];
+									echo str_replace("Tharindu Ishanka",$new_name,$name);
+								}
+							}
+
+							?>
+
+
+
+
+
+
+						</p>
+						<button class="btn btn-primary btn-md " data-toggle="modal" data-target="#myModal">change name
 						</button>
 					
 						<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 							<div class="modal-dialog">
 								<div class="modal-content">
 								<div class="modal-header">
-									<button type="button" class="close" data-dismiss="modal" aria-hidden="true">HOD
+									<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times
 									</button>
 									<h4 class="modal-title" id="myModalLabel">
 										change name
@@ -203,7 +378,50 @@
 									add new name here
 									<form action="profile-controll.php" method="post">
 										<input type="text" name="name">
+										<input type="submit" value="save changes">
+									</form>
+									
+
+									<!--<form action="profile-controll.php" method="post">
+										<input type="text" name="name">
 										<input type="submit">
+									</form>-->
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-default" data-dismiss="modal">
+									close
+									</button>
+									<button type="button" class="btn btn-primary" data-dismiss="modal" id="save">
+									save changes
+									</button>
+
+								</div>
+									
+								</div>
+							</div>
+						</div>
+
+						
+						<p>change password:</p>
+						<button class="btn btn-primary btn-md " data-toggle="modal" data-target="#myModal2">change
+						</button>
+						
+
+						<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+							<div class="modal-dialog">
+								<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal" aria-hidden="true">HOD
+									</button>
+									<h4 class="modal-title" id="myModalLabel">
+										change password
+									</h4>
+								</div>
+								<div class="modal-body">
+									add new password here
+									<form action="profile-controll.php" method="post">
+										<input type="password" name="pword">
+										<input type="submit" value="save changes">
 									</form>
 								</div>
 								<div class="modal-footer">
@@ -220,24 +438,32 @@
 							</div>
 						</div>
 
-						
-							<p>change password:</p>
-						<button class="btn btn-primary btn-md " data-toggle="modal" data-target="#myModal">change
+						<p>change E-mail address:</p>
+						<button class="btn btn-primary btn-md " data-toggle="modal" data-target="#myModal3">change
 						</button>
-						
 
-						<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+						<div class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel3" aria-hidden="true">
 							<div class="modal-dialog">
 								<div class="modal-content">
 								<div class="modal-header">
 									<button type="button" class="close" data-dismiss="modal" aria-hidden="true">HOD
 									</button>
-									<h4 class="modal-title" id="myModalLabel">
-										change password
+									<h4 class="modal-title" id="myModalLabel2">
+										change email
 									</h4>
 								</div>
 								<div class="modal-body">
-									add new password here
+									add new email address here
+									<form action="profile-controll.php" method="post">
+									<input type="text" name="email">
+									<input type="submit" value="save changes">
+									</form>
+									<!--<form action="profile-controll.php" method="post">
+										<input type="text" name="email">
+										<input type="submit">
+									</form>-->
+
+
 								</div>
 								<div class="modal-footer">
 									<button type="button" class="btn btn-default" data-dismiss="modal">
@@ -254,11 +480,47 @@
 						</div>
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 												
 						<br><br>
-						<form action="" method="post" enctype="multipart/form-data">
+						<iframe id="iframe" display="none" style="" name="iframe"></iframe>
+						<form action="profile-controll.php" method="post" enctype="multipart/form-data" target="iframe">
 							Change profile picture:
 							<input type="file" name="fileToUpload" id="fileToUpload">
+							<input type="submit" value="upload image" name="submit">
 						</form>
 					</div>
 					

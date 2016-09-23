@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 15, 2016 at 07:03 AM
+-- Generation Time: Sep 23, 2016 at 04:08 PM
 -- Server version: 5.6.17
 -- PHP Version: 5.5.12
 
@@ -209,18 +209,20 @@ CREATE TABLE IF NOT EXISTS `customerlogin` (
   `email` varchar(30) NOT NULL,
   `password` varchar(10) NOT NULL,
   `image_url` varchar(250) NOT NULL,
+  `pro_pic` varchar(250) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
 
 --
 -- Dumping data for table `customerlogin`
 --
 
-INSERT INTO `customerlogin` (`id`, `username`, `email`, `password`, `image_url`) VALUES
-(1, 'mythree', 'mythree@gmail.com', 'mythree', 'http://placehold.it/50x50'),
-(2, 'arunadj', 'arunadilshanjayathilake@yahoo.', '123', 'http://placehold.it/50x50'),
-(3, 'thila', 'thila@yahoo.com', 'thila', 'http://placehold.it/50x50'),
-(6, 'dad', 'dad@yahoo.com', 'df3939f119', 'http://placehold.it/50x50');
+INSERT INTO `customerlogin` (`id`, `username`, `email`, `password`, `image_url`, `pro_pic`) VALUES
+(1, 'mythree', 'mythree@gmail.com', 'mythree', 'http://placehold.it/50x50', ''),
+(2, 'arunadj', 'arunadilshanjayathilake@yahoo.', '123', 'http://placehold.it/50x50', ''),
+(3, 'thila', 'thila@yahoo.com', 'thila', 'http://placehold.it/50x50', ''),
+(6, 'dad', 'dad@yahoo.com', 'df3939f119', 'http://placehold.it/50x50', ''),
+(7, 'Tharindu', 'tharindu.ishanka1994@gmail.com', 'thari', '', 'uploads/user.png');
 
 -- --------------------------------------------------------
 
@@ -280,6 +282,8 @@ CREATE TABLE IF NOT EXISTS `notification` (
   `vendor` varchar(15) NOT NULL,
   `customer` varchar(15) NOT NULL,
   `view` varchar(10) NOT NULL,
+  `quoatation` int(11) NOT NULL,
+  `quoatation_image` varchar(250) NOT NULL,
   PRIMARY KEY (`not_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
@@ -287,12 +291,12 @@ CREATE TABLE IF NOT EXISTS `notification` (
 -- Dumping data for table `notification`
 --
 
-INSERT INTO `notification` (`not_id`, `date`, `vendor`, `customer`, `view`) VALUES
-(1, '2016-09-07', 'swarnamahal', 'Tharindu', 'yes'),
-(2, '2016-09-12', 'Nileka', 'Aruna', 'no'),
-(3, '2016-09-14', 'vogue', 'Tharindu', 'yes'),
-(4, '2016-09-21', 'manoma', 'Tharindu', 'yes'),
-(5, '2016-09-20', 'mallika', 'Tharindu', 'yes');
+INSERT INTO `notification` (`not_id`, `date`, `vendor`, `customer`, `view`, `quoatation`, `quoatation_image`) VALUES
+(1, '2016-09-07', 'swarnamahal', 'Tharindu', 'no', 100, 'designed-items/bangle.png'),
+(2, '2016-09-12', 'Nileka', 'Aruna', 'no', 200, ''),
+(3, '2016-09-14', 'vogue', 'Tharindu', 'yes', 300, ''),
+(4, '2016-09-21', 'manoma', 'Tharindu', 'no', 150, ''),
+(5, '2016-09-20', 'mallika', 'Tharindu', 'no', 250, '');
 
 -- --------------------------------------------------------
 

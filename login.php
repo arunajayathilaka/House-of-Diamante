@@ -12,7 +12,7 @@
 						<input type="password" id="pwd" name="p" placeholder="Password" required="required"/>
 						<button id="letmein"type="submit"> Let me in</button>
 					</form>
-					<p style="padding-left:0px;color:white;"><a style="color:white;">I forgot my password</a></p>
+					<p style="padding-left:0px;color:white;"><a href="pass_forget.php" style="color:white;">I forgot my password</a></p>
 		</div>	
 	</body>	
 </html>

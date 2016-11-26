@@ -1,9 +1,9 @@
 <?php
 
 	require_once'init.php';
-	$query=mysql_query("SELECT MAX(id) AS lastid FROM quotation");
+	$query=mysqli_query($link,"SELECT MAX(id) AS lastid FROM quotation");
 	
-	$row1=mysql_fetch_array($query);
+	$row1=mysqli_fetch_array($query);
 		
 	$id=$row1['lastid']+1;
 	if(isset($_FILES['ringimage'])){

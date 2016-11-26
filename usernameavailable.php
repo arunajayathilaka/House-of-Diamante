@@ -3,10 +3,10 @@ require_once 'init.php';
 	//$value =$_GET['val'];
 	if(isset($_POST['usern'])){
 		$usern=$_POST['usern'];
-		
-	$Query3=mysql_query("SELECT * FROM customerlogin WHERE username='{$usern}'");
+        
+	$Query3=mysqli_query($link,"SELECT * FROM customerlogin WHERE username='{$usern}'");
 
-while($row=mysql_fetch_array($Query3)){
+while($row=mysqli_fetch_array($Query3)){
 	$userrow=$row;
 }
 if(@count($userrow)==0){

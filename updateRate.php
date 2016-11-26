@@ -1,7 +1,9 @@
 <?php
+        //require_once 'init.php';
 	function updaterate($shopvendor){
-	$query = mysql_query("SELECT * FROM rating WHERE vendor_username='{$shopvendor}'AND rating.vendor_username='{$shopvendor}'"); 
-		while($data = mysql_fetch_assoc($query)){
+        $link=new mysqli("localhost","root","","houseofdiamante");
+	$query = mysqli_query($link,"SELECT * FROM rating WHERE vendor_username='{$shopvendor}'AND rating.vendor_username='{$shopvendor}'"); 
+		while($data = mysqli_fetch_assoc($query)){
 			$rate_db[] = $data;
 			$sum_rates[] = $data['rate'];
 		}

@@ -42,18 +42,18 @@ require_once 'init.php';
 		opacity: 0.5;
 		filter: alpha(opacity=50);
 	}
-}
+
 	</style>
 </head>
 
-<body style="background-image:url(img/bg5.jpg);background-size: 100% 100%;">
+<body style="background-color:#E1E1E1;background-size: 100% 100%;">
 		
 		<?php 
 		if(isset($_SESSION['er']) && $_SESSION['er']=="true"){$_SESSION['er1']="true";}
 		else{$_SESSION['er1']="false";}?>
-		<?php include 'menu.php' ?>
+		<?php include 'template/menu.php' ?>
 		
-		<?php include 'headnav.php';?> 
+		<?php include 'template/headnav.php';?> 
 
     <!-- Navigation -->
     
@@ -80,13 +80,13 @@ require_once 'init.php';
 				
 					
 						
-						<a role="button" class="btn btn-primary btn-sm center-block" style="margin-top:80px;" id="takePhoto" value="Click"><img class="img1" src="./img/camera.png" alt="" style="width:25% height:25%"></a>
+						<a role="button" class="btn btn-primary btn-sm center-block" style="margin-top:80px;" id="takePhoto" value="Click"><img class="img1" src="./img/camera.png" alt="" style=""></a>
 						
-						<a role="button" class="btn btn-primary btn-sm center-block" style="margin-top:10px;" id="takePhoto2" value="Click"><img class="img1" src="./img/back.png" alt="" style="width:25% height:25%"></a>
+						<a role="button" class="btn btn-primary btn-sm center-block" style="margin-top:10px;" id="takePhoto2" value="Click"><img class="img1" src="./img/back.png" alt="" style=""></a>
 						
-                        <a role="button" class="btn btn-primary btn-sm center-block" style="margin-top:10px;" id="download" value="Click" onclick="downloadCanvas();"><img class="img1" src="./img/download.png" alt="" style="width:25% height:25%"></a>
+                        <a role="button" class="btn btn-primary btn-sm center-block" style="margin-top:10px;" id="download" value="Click" onclick="downloadCanvas();"><img class="img1" src="./img/download.png" alt="" style=""></a>
                         
-                        <a role="button" class="btn btn-primary btn-sm center-block" style="margin-top:10px;" id="takePhoto4" value="Click"><img class="img1" src="./img/upload.png" alt="" style="width:25% height:25%"></a>
+                        <a role="button" class="btn btn-primary btn-sm center-block" style="margin-top:10px;" id="takePhoto4" value="Click"><img class="img1" src="./img/upload.png" alt="" style=""></a>
 					
 			</div>
 			<div class="col-md-3">			
@@ -110,7 +110,7 @@ require_once 'init.php';
 		<div class="row">
 			<div class="col-md-12">
 				<div class="panel panel-default" style="background-color: rgba(230,238,255,0.5);">
-					<div class="panel-body" style="height:240px; overflow-x: scroll; overflow-y: hidden; white-space:nowrap;">
+					<div class="panel-body" id="jtype" style="height:240px; overflow-x: scroll; overflow-y: hidden; white-space:nowrap;">
 					<div id="f4">
 					       <label class="span6" for="jewelleryType" style="padding-top:6px">Select Jewelry Type </label>
                        <select class="span6" id="jewelleryType" onchange='showJewellery()'>
@@ -126,6 +126,18 @@ require_once 'init.php';
                     
 					
 					
+					</div>
+                                            
+                                        <div class="thumbnail transthumb text-center" style="height:auto; width:100px; display:inline-block; margin: 20px 5px 5px 5px;">
+                                            <a id="" value="neck1.png" role="button"><img src="img/vr/neck1.png" style="height:100;width:100" alt=""></a>							
+					</div>
+                                        
+                                        <div class="thumbnail transthumb text-center" style="height:auto; width:100px; display:inline-block; margin: 20px 5px 5px 5px;">
+                                            <a id="" value="neck2.png" role="button"><img src="img/vr/neck2.png" style="height:100;width:100" alt=""></a>							
+					</div>
+                                            
+                                        <div class="thumbnail transthumb text-center" style="height:auto; width:100px; display:inline-block; margin: 20px 5px 5px 5px;">
+                                            <a id="" value="neck3.png" role="button"><img src="img/vr/neck3.png" style="height:100;width:100" alt=""></a>							
 					</div>
 					
 				</div>

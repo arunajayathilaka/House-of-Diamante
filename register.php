@@ -11,10 +11,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password=$_POST["p"];
 	$pwdhashid=md5($password);
 }
+//$link=new mysqli("localhost","root","","houseofdiamante");
 $sql = "INSERT INTO temp_customerlogin (confirm_code,username,email,password)
 VALUES ('$confirm_code','$username', '$email', '$pwdhashid')";
 
-if(mysql_query($sql)){
+if(mysqli_query($link,$sql)){
 		// send e-mail to ...
 	$to=$email;
 

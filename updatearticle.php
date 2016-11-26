@@ -11,25 +11,23 @@ else{
 }
 	$sname=preg_replace("#[^0-9a-z]#i","",$sname);
 	//$name="article 3";
-	$articleQuery=mysql_query("SELECT articles.id,articles.title_name,articles.image_url,COUNT(articles_likes.id) AS likes,COUNT(articles_love.id) AS loves,COUNT(articles_haha.id) AS hahas FROM articles
-LEFT JOIN articles_likes ON articles.id = articles_likes.article_id LEFT JOIN articles_love ON articles.id = articles_love.article_id
-LEFT JOIN articles_haha ON articles.id = articles_haha.article_id WHERE articles.title_name LIKE '%{$sname}%'GROUP BY articles.id");
+	$articleQuery=mysqli_query($link,"SELECT * FROM articles WHERE articles.title_name LIKE '%{$sname}%'");
 
-$likesq=mysql_query("SELECT articles_likes.article_id FROM articles_likes WHERE articles_likes.user='{$user}'");
-$loveq=mysql_query("SELECT articles_love.article_id FROM articles_love WHERE articles_love.user='{$user}'");
-$hahaq=mysql_query("SELECT articles_haha.article_id FROM articles_haha WHERE articles_haha.user='{$user}'");
+$likesq=mysqli_query($link,"SELECT articles_like.article_id FROM articles_likes WHERE articles_like.user='{$user}'AND articles_like.type='like'");
+$loveq=mysqli_query($link,"SELECT articles_like.article_id FROM articles_love WHERE articles_like.user='{$user}'AND articles_like.type='love'");
+$hahaq=mysqli_query($link,"SELECT articles_like.article_id FROM articles_haha WHERE articles_like.user='{$user}'AND articles_like.type='haha'");
 
-	while($row2=mysql_fetch_array($likesq)){
+	while($row2=mysqli_fetch_array($likesq)){
 	$likesarr[]=$row2['article_id'];
 	}
 
-while($row3=mysql_fetch_array($loveq)){
+while($row3=mysqli_fetch_array($loveq)){
 	$lovearr[]=$row3['article_id'];
 }
-while($row4=mysql_fetch_array($hahaq)){
+while($row4=mysqli_fetch_array($hahaq)){
 	$hahaarr[]=$row4['article_id'];
 }
-	while($row=mysql_fetch_array($articleQuery)){
+	while($row=mysqli_fetch_array($articleQuery)){
 		$article3[]=$row;
 	}
 	if(@count($article3) != 0 ){

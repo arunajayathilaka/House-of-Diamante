@@ -7,9 +7,9 @@ if(isset($_POST['item1']) && isset($_POST['item2'])){
 	$itemname2=$_POST['item2'];
 	
 
-	$productQuery=mysql_query("SELECT product_items.product_name,product_items.product_dec,product_items.product_price,product_items.image_url FROM product_items WHERE product_name='{$itemname1}' OR product_name='{$itemname2}'");
+	$productQuery=mysqli_query($link,"SELECT product_items.product_name,product_items.product_dec,product_items.product_price,product_items.image_url FROM product_items WHERE product_name='{$itemname1}' OR product_name='{$itemname2}'");
 
-	while($row=mysql_fetch_array($productQuery)){
+	while($row=mysqli_fetch_array($productQuery)){
 		$products[]=$row;
 	}
 	if(@count($products) != 0 ){

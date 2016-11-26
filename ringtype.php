@@ -6,8 +6,8 @@ if(isset($_POST['ringtype'])){
 	$ringid = $_POST['ringtype'];
 
 
-$sql3q=mysql_query("SELECT image_url FROM ringtype WHERE id='$ringid'");
-while($row=mysql_fetch_array($sql3q)){
+$sql3q=mysqli_query($link,"SELECT image_url FROM ringtype WHERE id='$ringid'");
+while($row=mysqli_fetch_array($sql3q)){
  $ringtyperow=$row;	
 }
 

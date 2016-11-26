@@ -1,6 +1,6 @@
 <?php
 //ob_start();
-session_start();
+
 ?>
 <html>
 <head>
@@ -18,7 +18,7 @@ session_start();
  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 
 </head>
-<body style="background-image:url(img/bg5.jpg);background-size: 100% 100%;">
+<body style="background-color:#E1E1E1;background-size: 100% 100%;">
 	
 		
 		
@@ -32,7 +32,7 @@ session_start();
 			
 		
 	    
-			<?php include 'headnav.php';?>
+			<?php include 'template/headnav.php';?>
 		
 	   
 	
@@ -44,12 +44,14 @@ session_start();
 				<div class="login-block text-center" >
 					<h1><span><img src="img/signin.png" style="width:15%;"/></span>Sign In</h1>
 					<p style="padding-left:0px;">Already have an account? Please sign in.</p>
+                                        
 					<form method="post" action="checklogin.php">
 						<input type="email" id="eml"name="u" placeholder="Username/Email" required="required"/>
 						<input type="password" id="pwd" name="p" placeholder="Password" required="required"/>
-						<button id="letmein"type="submit"> Let me in</button>
+						<button id="letmein"type="submit" > Let me in</button>
 					</form>
-					<p style="padding-left:0px;color:white;"><a style="color:white;">I forgot my password</a></p>
+                                        
+					<p style="padding-left:0px;color:white;"><a href="forgot_pass.php" style="color:red;">I forgot my password</a></p>
 				</div>
 			</div>
 			<div class="col-md-6 text-center" style=" height:auto;border-left: 2px solid #333;">
@@ -80,7 +82,7 @@ session_start();
 				
 	
     <footer class="container1">
-		<?php include 'footer.php';?>	
+		<?php include 'template/footer.php';?>	
 	</footer>
 
 <script src="js/jquery.js"></script>

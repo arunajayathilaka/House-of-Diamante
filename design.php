@@ -17,15 +17,11 @@
 	
 	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
     <!-- Custom CSS -->
+    <link href="css/home.css" rel="stylesheet">
     <link href="css/thumbnail-gallery.css" rel="stylesheet">
-	<link href="css/home.css" rel="stylesheet">
+     
 	
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
+    
 	<style>
 	.clickable{
 		cursor: pointer;   
@@ -39,27 +35,35 @@
     opacity: 0.5;
     filter: alpha(opacity=50); /* For IE8 and earlier */
 	
-	
+        }
 	
 	.selected{
 		box-shadow:0px 12px 22px 1px #333;
 		opacity: 0.5;
 		filter: alpha(opacity=50);
 	}
-	@media{
-		
-	}
-}
+        .dpanel{
+            height:380px; 
+            margin-top:20px;
+            background-color: rgba(230,238,255,0.5);
+        }
+        @media only screen and (max-width:767px){
+           .dpanel{
+                height:50%;
+            }
+        }
+	
+
 	</style>
 </head>
 
-<body style="background-image: url(img/bg5.jpg); background-size: 100% 100%;" >
+<body style="background-color:#E1E1E1; background-size: 100% 100%;" >
 		<?php 
 		if(isset($_SESSION['er']) && $_SESSION['er']=="true"){$_SESSION['er1']="true";}
 		else{$_SESSION['er1']="false";}?>
-		<?php include 'menu.php' ?>
+		<?php include 'template/menu.php' ?>
 		
-	 <?php include 'headnav.php';?>   
+	 <?php include 'template/headnav.php';?>   
 	
 
     <!-- Page Content -->
@@ -68,17 +72,26 @@
         <div class="row">
 			<div class="col-md-3">
 			
-				<div class="panel panel-default" style="height:380px; margin-top:20px; background-color: rgba(230,238,255,0.5);">
-					<div class="panel-body" id="gemcat">
-						<div class="span12" style="text-align: center">      
-							<h1 id="gemtype">Gem of Sri Lanka</h1>
-							<img src="img/gem/gem.jpg"style="height:100px;" alt="">
-							<p>A gemstone is the naturally occurring crystalline form of a mineral which is desirable for its beauty, 
-							valuable in its rarity, and durable enough to be enjoyed for generations. There are more than 30
-							popular gem varieties.
-							</p>
+				 
+                                        <div class="panel panel-default"style="margin-top:20px;background-color: rgba(230,238,255,0.5);">
+					<div class="panel-heading">Types</div>
+                                        <div class="panel-body" style="height:338px; overflow-y: scroll;overflow-x:hidden; white-space:nowrap;">
+					<div id="f4">
+					<?php 
+						$sql3q1=mysqli_query($link,"SELECT * FROM ringtype");
+						 while($row=mysqli_fetch_array($sql3q1)){
+						 $ringtypes[]=$row;	
+						}
+					?>
+					<?php foreach($ringtypes as $ringtype): ?>
+						<div class="thumbnail transthumb text-center" style="height:auto; width:100px; display:inline-block; margin: 5px 5px 5px 5px;">
+							<a id="<?php echo $ringtype['id']; ?>" value="<?php echo $ringtype['gem_n']; ?>" role="button"><img src="<?php echo $ringtype['image_url']; ?>" alt=""></a>							
 						</div>
+					<?php endforeach;?>
 					</div>
+					</div>
+					
+			
 					
 				</div>
 			</div>
@@ -167,14 +180,14 @@
 					  
 					</div>
 				  </div>
-				<div class="panel panel-default" style="height:380px; margin-top:20px;background-color: rgba(230,238,255,0.5);">
+				<div id="3dpanel" class="panel panel-default dpanel" style="">
 				<div class="panel-body">
-				<div class="row text-center">
-				<iframe src="https://lagoa.com/embed_links/7342?validationHash=ZeOLw0hs1wVbl_NgaUpHdzjjBsFvqw&width=500&height=280&auto_load_scene=true&asset_name=false&owner_name=false&lagoa_logo=false&version_number=21" 
+				<div class="row text-center" >
+				<iframe style="width: 100%;height: 80%;"src="https://lagoa.com/embed_links/7342?validationHash=ZeOLw0hs1wVbl_NgaUpHdzjjBsFvqw&width=500&height=280&auto_load_scene=true&asset_name=false&owner_name=false&lagoa_logo=false&version_number=21" 
 				id="lagoaframe" width="500" height="280" scrolling="no" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
 				</div>
 				<div class="text-right" style="margin-top:10px; margin-right:10px;">
-					<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" >Quotation</button>
+					<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" >Call Quotation</button>
 				</div>
 				</div>
 				
@@ -191,8 +204,8 @@
 								<div class="panel-body" id="p1">
 								<div id="f1">
 									<?php 
-									$sql3q2=mysql_query("SELECT * FROM metal");
-									 while($row=mysql_fetch_array($sql3q2)){
+									$sql3q2=mysqli_query($link,"SELECT * FROM metal");
+									 while($row=mysqli_fetch_array($sql3q2)){
 									 $metalrs[]=$row;	
 									}
 								?>
@@ -217,8 +230,8 @@
 								<div id="f2">
 								
 								<?php 
-									$sql3q2=mysql_query("SELECT * FROM gem");
-									 while($row=mysql_fetch_array($sql3q2)){
+									$sql3q2=mysqli_query($link,"SELECT * FROM gem");
+									 while($row=mysqli_fetch_array($sql3q2)){
 									 $gemrs[]=$row;	
 									}
 								?>
@@ -239,8 +252,8 @@
 								<div class="panel-body" id="p1">
 								<div id="f3">
 									<?php 
-									$sql3q3=mysql_query("SELECT * FROM centercut");
-									 while($row=mysql_fetch_array($sql3q3)){
+									$sql3q3=mysqli_query($link,"SELECT * FROM centercut");
+									 while($row=mysqli_fetch_array($sql3q3)){
 									 $cutrs[]=$row;	
 									}
 								?>
@@ -259,29 +272,7 @@
 			</div>
            
         </div>
-		<div class="row">
-			<div class="col-md-12">
-				<div class="panel panel-default"style="background-color: rgba(230,238,255,0.5);">
-					<div class="panel-body" style="height:145px; overflow-x: scroll; overflow-y: hidden; white-space:nowrap;">
-					<div id="f4">
-					<?php 
-						$sql3q1=mysql_query("SELECT * FROM ringtype");
-						 while($row=mysql_fetch_array($sql3q1)){
-						 $ringtypes[]=$row;	
-						}
-					?>
-					<?php foreach($ringtypes as $ringtype): ?>
-						<div class="thumbnail transthumb text-center" style="height:auto; width:100px; display:inline-block; margin: 5px 5px 5px 5px;">
-							<a id="<?php echo $ringtype['id']; ?>" value="<?php echo $ringtype['gem_n']; ?>" role="button"><img src="<?php echo $ringtype['image_url']; ?>" alt=""></a>							
-						</div>
-					<?php endforeach;?>
-					</div>
-					</div>
-					
-				</div>
-			</div>
 		
-		</div>
        
         
         
@@ -290,7 +281,7 @@
     <!-- /.container -->
 	<!-- Footer -->
 	<footer class="container1">
-		<?php include 'footer.php';?>		
+		<?php include 'template/footer.php';?>		
 	</footer>
 
     <!-- jQuery -->
@@ -340,7 +331,7 @@
 			$.ajax({
 						url:'insertqoutation.php',
 						method:'POST',
-						data:{fullname:fullname,email:email,phone_n:phone_n,ring_s,ring_s,carrot_w:carrot_w,metal:metal,gemstone:gemstone,centercut:centercut,image_url:image_url},
+						data:{fullname:fullname,email:email,phone_n:phone_n,ring_s:ring_s,carrot_w:carrot_w,metal:metal,gemstone:gemstone,centercut:centercut,image_url:image_url},
 						success:function(data){
 							alert(data);
 							//$('#image').html(data);
@@ -658,15 +649,7 @@
 		$('#gemstone').val(value.replace("edit_gem_",''));
 		pickgemMaterial(value);
 		//ajax php code for getting gem details from db
-		$.ajax({
-				url:'gemretrive.php',
-				method:'POST',
-				data:{gemid: id},
-				success:function(data){
-					//alert("done");
-					$('#gemcat').html(data);
-				}
-		});
+		
 		
 	});
 	

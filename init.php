@@ -3,9 +3,9 @@
 	$servername = "localhost";
 	$mysqlusername = "root";
 	$password = "";
-	$dbname = "houseofdiamante";
+	$dbname = "hod-new";
 	//$_SESSION['username']="mythree";
-	@mysql_connect("$servername","$mysqlusername","$password");
-	@mysql_select_db("$dbname") or die("couldn't connect db");
-	
+	mysqli_connect("$servername","$mysqlusername","$password","$dbname")
+        or die("couldn't connect db");
+	$link=new mysqli("localhost","root","","hod-new");
 ?>

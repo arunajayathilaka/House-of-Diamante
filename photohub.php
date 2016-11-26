@@ -3,7 +3,7 @@
 require_once 'init.php';
 
 $user=$_SESSION['username'];
-$articlesQuery1=mysql_query("SELECT articles.id,articles.title_name,articles.image_url,articles.username FROM articles");
+$articlesQuery1=mysqli_query($link,"SELECT * FROM articles");
 
 /*$articlesQuery2=mysql_query("SELECT articles.id,articles.title_name,COUNT(articles_love.id) AS loves FROM articles
 LEFT JOIN articles_love ON articles.id = articles_love.article_id GROUP BY articles.id");
@@ -11,44 +11,44 @@ LEFT JOIN articles_love ON articles.id = articles_love.article_id GROUP BY artic
 $articlesQuery3=mysql_query("SELECT articles.id,articles.title_name,COUNT(articles_haha.id) AS hahas FROM articles
 LEFT JOIN articles_haha ON articles.id = articles_haha.article_id GROUP BY articles.id");
 */
-$likesq=mysql_query("SELECT articles_likes.article_id FROM articles_likes WHERE articles_likes.user='{$user}'");
-$loveq=mysql_query("SELECT articles_love.article_id FROM articles_love WHERE articles_love.user='{$user}'");
-$hahaq=mysql_query("SELECT articles_haha.article_id FROM articles_haha WHERE articles_haha.user='{$user}'");
+$likesq=mysqli_query($link,"SELECT articles_like.article_id FROM articles_like WHERE articles_like.user='{$user}' AND articles_like.type='like'");
+$loveq=mysqli_query($link,"SELECT articles_like.article_id FROM articles_like WHERE articles_like.user='{$user}' AND articles_like.type='love'");
+$hahaq=mysqli_query($link,"SELECT articles_like.article_id FROM articles_like WHERE articles_like.user='{$user}'AND articles_like.type='haha'");
 
-while($row1=mysql_fetch_array($articlesQuery1)){
+while($row1=mysqli_fetch_array($articlesQuery1)){
 	$articles1[]=$row1;
 }
 
-$row2=mysql_num_rows($likesq);
+$row2=mysqli_num_rows($likesq);
 	
 if($row2==0){
 		$likesarr=array("null");
-		echo 'kosala';
+		//echo 'kosala';
 	}
 	else{
-	while($row2=mysql_fetch_array($likesq)){
+	while($row2=mysqli_fetch_array($likesq)){
 	$likesarr[]=$row2['article_id'];
 	}
 	}
 
-$row3=mysql_num_rows($loveq);
+$row3=mysqli_num_rows($loveq);
 	if($row3==0){
 		$lovearr=array("null");
-		echo 'dfg';
+		//echo 'dfg';
 	}
 	else{
-	while($row3=mysql_fetch_array($loveq)){
+	while($row3=mysqli_fetch_array($loveq)){
 	$lovearr[]=$row3['article_id'];
 		}
 	}
 
-$row4=mysql_num_rows($hahaq);
+$row4=mysqli_num_rows($hahaq);
 	if($row4==0){
 		$hahaarr=array("null");
-		echo 'sdd';
+		//echo 'sdd';
 	}
 	else{
-		while($row4=mysql_fetch_array($hahaq)){
+		while($row4=mysqli_fetch_array($hahaq)){
 	$hahaarr[]=$row4['article_id'];
 	}
 	}
@@ -86,14 +86,14 @@ $row4=mysql_num_rows($hahaq);
 
 </head>
 
-<body style="background-image: url(img/bg5.jpg); background-size: 100% 100%;" >
+<body style="background-color:#E1E1E1; background-size: 100% 100%;" >
 
 		<?php 
 		if(isset($_SESSION['er']) && $_SESSION['er']=="true"){$_SESSION['er1']="true";}
 		else{$_SESSION['er1']="false";}?>
-		<?php include 'menu.php' ?>
+		<?php include 'template/menu.php' ?>
 		
-	    <?php include 'headnav.php';?> 
+	    <?php include 'template/headnav.php';?> 
 
     <!-- Page Content -->
     <div class="container">
@@ -122,8 +122,8 @@ $row4=mysql_num_rows($hahaq);
 			<div id="article">
 			
 			<?php foreach($articles1 as $article1):?>
-            <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-                <div class="thumbnail"style="background-color: rgba(230,238,255,0.5); border: 3px solid #218dfb;">
+            <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 thumb">
+                <div class="thumbnail"style="width:280px;background-color: rgba(230,238,255,0.5); border: 3px solid #218dfb;">
                 
                     <img class="img-responsive" src="<?php echo $article1['image_url']; ?>" style="height:30%;" alt="">
                 
@@ -133,54 +133,43 @@ $row4=mysql_num_rows($hahaq);
                     <p>
 					
 					<?php if(in_array($article1['id'],$likesarr)):?>
-					<a value="like" id="<?php echo $article1['id']; ?>" class="btn btn-default btn-sm active" role="button"><img class="img1" src="./img/like.png" alt="" style="width:25% height:5%"></a> 
+					<a value="like" id="<?php echo $article1['id']; ?>" class="btn btn-default btn-sm active" role="button"><img class="img1" src="./img/like.png" alt="" style=""></a> 
 					
 					<?php else: ?>
-					<a value="like" id="<?php echo $article1['id']; ?>" class="btn btn-default btn-sm" role="button"><img class="img1" src="./img/like.png" alt="" style="width:25% height:5%"></a> 
+					<a value="like" id="<?php echo $article1['id']; ?>" class="btn btn-default btn-sm" role="button"><img class="img1" src="./img/like.png" alt="" style=""></a> 
 					
 					<?php endif; ?>
 					<?php $sid="like";
-						  $sid.=$article1['id'];
-						  //$sid="like2"
-						 $articlesQuery1=mysql_query("SELECT articles.id,articles.title_name,articles.image_url,articles.username,COUNT(articles_likes.id) AS likes FROM articles
-							LEFT JOIN articles_likes ON articles.id = articles_likes.article_id WHERE articles.id='{$article1['id']}' GROUP BY articles.id");
-							$roww1=mysql_fetch_array($articlesQuery1);
-					?>
-					<span id="<?php echo $sid; ?>" class="badge"><?php echo $roww1['likes']; ?> </span>
+                                            $sid.=$article1['id'];
+                                        ?>
+					<span id="<?php echo $sid; ?>" class="badge"><?php echo $article1['likes']; ?> </span>
 					
 					<?php if(in_array($article1['id'],$lovearr)):?>
-					<a value="love" id="<?php echo $article1['id']; ?>" class="btn btn-default btn-sm active" role="button"><img class="img1" src="./img/heart.png" alt="" style="width:25% height:5%"></a>
+					<a value="love" id="<?php echo $article1['id']; ?>" class="btn btn-default btn-sm active" role="button"><img class="img1" src="./img/heart.png" alt="" style=""></a>
 					
 					<?php else: ?>
-					<a value="love" id="<?php echo $article1['id']; ?>" class="btn btn-default btn-sm" role="button"><img class="img1" src="./img/heart.png" alt="" style="width:25% height:5%"></a>
+					<a value="love" id="<?php echo $article1['id']; ?>" class="btn btn-default btn-sm" role="button"><img class="img1" src="./img/heart.png" alt="" style=""></a>
 					
 					<?php endif; ?>
 					
 					<?php $sid="love";
-						  $sid.=$article1['id'];
-						  //$sid="like2"
-						 $articlesQuery2=mysql_query("SELECT articles.id,articles.title_name,COUNT(articles_love.id) AS loves FROM articles
-						LEFT JOIN articles_love ON articles.id = articles_love.article_id WHERE articles.id='{$article1['id']}' GROUP BY articles.id");
-						$roww2=mysql_fetch_array($articlesQuery2);
-					?>
+                                            $sid.=$article1['id'];
+                                        ?>
 					
-					<span id="<?php echo $sid; ?>" class="badge"><?php echo $roww2['loves']; ?></span>
+					<span id="<?php echo $sid; ?>" class="badge"><?php echo $article1['loves']; ?></span>
 					
 					<?php if(in_array($article1['id'],$hahaarr)):?>
-					<a value="haha" id="<?php echo $article1['id']; ?>" class="btn btn-default btn-sm active" role="button"><img class="img1" src="./img/smile.png" alt="" style="width:25% height:5%"></a>
+					<a value="haha" id="<?php echo $article1['id']; ?>" class="btn btn-default btn-sm active" role="button"><img class="img1" src="./img/smile.png" alt="" style=""></a>
 					
 					<?php else: ?>
-					<a value="haha" id="<?php echo $article1['id']; ?>" class="btn btn-default btn-sm" role="button"><img class="img1" src="./img/smile.png" alt="" style="width:25% height:5%"></a>
+					<a value="haha" id="<?php echo $article1['id']; ?>" class="btn btn-default btn-sm" role="button"><img class="img1" src="./img/smile.png" alt="" style=""></a>
 					
 					<?php endif; ?>
-					<?php $sid="haha";
-						  $sid.=$article1['id'];
-						  //$sid="like2"
-						 $articlesQuery3=mysql_query("SELECT articles.id,articles.title_name,COUNT(articles_haha.id) AS hahas FROM articles
-							LEFT JOIN articles_haha ON articles.id = articles_haha.article_id WHERE articles.id='{$article1['id']}' GROUP BY articles.id");
-							$roww3=mysql_fetch_array($articlesQuery3);
-					?>
-					<span id="<?php echo $sid; ?>" class="badge"><?php echo $roww3['hahas']; ?></span>
+					
+                                        <?php $sid="haha";
+                                            $sid.=$article1['id'];
+                                        ?>
+					<span id="<?php echo $sid; ?>" class="badge"><?php echo $article1['hahas']; ?></span>
 					</p>
 					
 				</div>
@@ -240,10 +229,11 @@ $row4=mysql_num_rows($hahaq);
 			data:{type: value,id: ide},
 			success:function(data){
 				//location.reload();
-				///alert(data);
+				//alert(data);
 				//var ty=$(this).find('span');
 				//alert(sid);
 				$(sid).html(data);
+                                //alert(ere);
 				//alert($(sid).text());
 			}
 		});

@@ -14,7 +14,7 @@ if(isset($_POST['fullname']) && isset($_POST['email']) && isset($_POST['phone_n'
 	$image_url=$_POST['image_url'];
 
 
-$sql3q=mysql_query(" INSERT INTO quotation(id,full_name,mobile_num,email,ring_size,carrot_w,metal,gemstone,center_cut,image_url)
+$sql3q=mysqli_query($link," INSERT INTO quotation(id,full_name,mobile_num,email,ring_size,carrot_w,metal,gemstone,center_cut,image_url)
  values (null,'$fullname','$email','$phone_n','$carrot_w','$ring_s','$metal','$gemstone','$centercut','$image_url')");
 
 

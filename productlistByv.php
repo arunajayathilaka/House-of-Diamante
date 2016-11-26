@@ -5,16 +5,16 @@ if(isset($_POST['shopvendor'])){
 		
 	$shopvendor=$_POST['shopvendor'];
 
-	$productQuery=mysql_query("SELECT product_items.product_name,product_items.product_dec,product_items.product_price,product_items.image_url FROM product_items WHERE vendor_username='{$shopvendor}'");
+	$productQuery=mysqli_query($link,"SELECT product_items.product_name,product_items.product_dec,product_items.product_price,product_items.image_url FROM product_items WHERE vendor_username='{$shopvendor}'");
 
-	while($row=mysql_fetch_array($productQuery)){
+	while($row=mysqli_fetch_array($productQuery)){
 		$products[]=$row;
 	}
 	if(@count($products) != 0 ){
 		foreach($products as $product1){
 			echo '
 				<div class="col-sm-4 col-lg-4 col-md-4">
-								<div class="thumbnail" style="background-color: rgba(230,238,255,0.5); border: 3px solid #218dfb;">
+								<div class="thumbnail" style="background-color: rgba(230,238,255,0.5); border: 1px solid #218dfb;">
 									<img src="'.$product1['image_url'].'"style="height:30%; alt="">
 									<div class="caption">
 										<h4 class="pull-right">'.$product1['product_price'].'</h4>

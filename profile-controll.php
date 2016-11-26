@@ -1,6 +1,22 @@
 <?php
 //session_start();
 require_once 'init.php';
+?>
+<html>
+
+<head>
+	<script type="text/javascript">
+		/*function reDirect(){
+			window.location="profile.php";
+		}
+
+		setTimeout('reDirect()',5000);*/
+	</script>
+</head>
+
+<body>
+
+<?php
 if(isset($_POST["name"])){
 	$name=$_POST["name"];
 
@@ -71,14 +87,14 @@ if (isset($_POST["submit"])) {
 }
 
 if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-	$query_upload = "UPDATE `customerlogin` SET `pro_pic` = '$target_file' WHERE `id` = '7'";
-	mysql_query($query_upload) or die("error in uplaod".mysql_error());
+	$query_upload = "UPDATE `customerlogin` SET `pro_pic` = '$target_file' WHERE `username`='{$_SESSION['username']}'";
+	mysqli_query($link,$query_upload) or die("error in uplaod".mysql_error());
 }else{
 	exit("error while uploading to the server");
 }
 
-$select_query = "SELECT `pro_pic` FROM `customerlogin` WHERE `id` = '7' ";
-$sql_run = mysql_query($select_query) or die(mysql_error());
+$select_query = "SELECT `pro_pic` FROM `customerlogin` WHERE `username`='{$_SESSION['username']}' ";
+$sql_run = mysqli_query($link,$select_query) or die(mysql_error());
 while ($row = mysql_fetch_array($sql_run)) {
 	$image_name = $row['pro_pic'];
 	//echo $image_name;
@@ -96,4 +112,5 @@ while ($row = mysql_fetch_array($sql_run)) {
 
 
 ?>
-
+</body>
+</html>

@@ -6,8 +6,8 @@
 		
 	
 	
-	$query1 = mysql_query("SELECT * FROM gem WHERE gem.id='{$id1}'"); 
-	while($data1 = mysql_fetch_assoc($query1)){
+	$query1 = mysqli_query($link,"SELECT * FROM gem WHERE gem.id='{$id1}'"); 
+	while($data1 = mysqli_fetch_assoc($query1)){
 		$gem2 = $data1;
 	
 	}

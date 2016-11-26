@@ -1,5 +1,5 @@
 <?php
-session_start();
+//session_start();
 require_once 'init.php';
 
 // Check connection
@@ -14,9 +14,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
 //make a query for selecting email that user entered
-$result = mysql_query("SELECT * FROM customerlogin WHERE email='{$email}'");
+//$link=new mysqli("localhost","root","","houseofdiamante");
+$result = mysqli_query($link,"SELECT * FROM customerlogin WHERE email='{$email}'");
 $er=true;
-while ($row = mysql_fetch_array($result))
+while ($row = mysqli_fetch_array($result))
 {	
 		$er=false;
         if($password==$row['password']){
@@ -32,7 +33,9 @@ while ($row = mysql_fetch_array($result))
 	
 }
 if($er){
-header("Location: login.php");}
-
-    mysql_close();
+    
+    header("Location: login.php");
+}
+    mysqli_close($link);
+    session_commit();
 ?>
